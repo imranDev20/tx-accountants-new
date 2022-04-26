@@ -5,7 +5,7 @@ require("dotenv").config({
 const strapiConfig = {
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
-  collectionTypes: [`test`, `message`, `article`],
+  collectionTypes: [`test`, `message`, `blog`],
   singleTypes: [],
   queryLimit: 1000,
 };
@@ -40,6 +40,16 @@ module.exports = {
         path: "./src/images/",
       },
       __key: "images",
+    },
+    {
+      resolve: `gatsby-plugin-google-fonts`,
+      options: {
+        fonts: [
+          `inter\:200,300,400,500,600,700,800,900`,
+          `open sans\:300,400,500,600,700,800,900`, // you can also specify font weights and styles
+        ],
+        display: "swap",
+      },
     },
   ],
 };

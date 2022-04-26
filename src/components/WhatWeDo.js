@@ -1,7 +1,6 @@
 import React from "react";
 import WorkCard from "./WorkCard";
 import { LinkButton } from "./Button";
-
 import BookKeepingIcon from "../images/icons/bookkeeping.svg";
 import ManagementAccountsIcon from "../images/icons/management-accounts.svg";
 import CorporateTaxReturnIcon from "../images/icons/corporate-tax-return.svg";
@@ -12,7 +11,11 @@ import VatReturn from "../images/icons/vat-return.svg";
 import PersonalTaxReturnIcon from "../images/icons/personal-tax-return.svg";
 import CompanyFormationIcon from "../images/icons/company-formation.svg";
 
+import { useInView } from "react-intersection-observer";
+
 const WhatWeDo = () => {
+  const { ref, inView } = useInView({ threshold: 0.4 });
+
   const works = [
     { id: 1, name: "Personal Tax Returns", icon: PersonalTaxReturnIcon },
     { id: 2, name: "Accounts Preparation", icon: AccountsPreparationIcon },
@@ -21,11 +24,16 @@ const WhatWeDo = () => {
     { id: 5, name: "Corporation Tax Returns", icon: CorporateTaxReturnIcon },
     { id: 6, name: "Management Accounts", icon: ManagementAccountsIcon },
   ];
+
   return (
     <section className="bg-neutral-100 w-full py-14">
       <div className="container mx-auto px-20">
-        <h2 className={`text-center capitalize text-secondary`}>What we do</h2>
-        <p className="text-neutral-600 mt-5 mx-auto text-center">
+        <h2
+          className={`text-center capitalize text-secondary-dark text-3xl font-semibold `}
+        >
+          What we do
+        </h2>
+        <p className="text-neutral-600 mt-5 mx-auto text-center leading-loose">
           We are working together with entrepreneurs and private individuals
           achieve their goal through our personalized services and cutting-edge
           accounting software which automates the major accounting process. We
@@ -38,12 +46,18 @@ const WhatWeDo = () => {
           accounting services, so you will never have to be surprised with
           unexpected bill.
         </p>
-        <div className="grid grid-cols-3 gap-5 my-10">
-          {works.map((work) => (
-            <WorkCard key={work.id} name={work.name} icon={work.icon} />
+        <div ref={ref} className="grid grid-cols-3 gap-10 my-10">
+          {works.map((work, i) => (
+            <WorkCard
+              key={work.id}
+              index={i}
+              inView={inView}
+              name={work.name}
+              icon={work.icon}
+            />
           ))}
         </div>
-        <LinkButton to={`/fixed-fee-accountants`}>
+        <LinkButton to={`/fixed-fee-pricing/`}>
           View Our Pricing Plan
         </LinkButton>
       </div>

@@ -13,9 +13,12 @@ export const AnchorButton = ({ href, className, children, icon }) => {
   );
 };
 
-export const LinkButton = ({ to, className, children }) => {
+export const LinkButton = ({ to, className, children, animationButton }) => {
   return (
-    <div className="h-12 my-5 flex justify-center items-center">
+    <motion.div
+      animate={animationButton}
+      className={`h-12 my-5 flex justify-center items-center ${className}`}
+    >
       <Link to={to}>
         <motion.div
           initial={{ scale: 1 }}
@@ -33,7 +36,7 @@ export const LinkButton = ({ to, className, children }) => {
           {children}
         </motion.div>
       </Link>
-    </div>
+    </motion.div>
   );
 };
 
