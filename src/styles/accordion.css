@@ -1,0 +1,7 @@
+.accordion__item:first-child .accordion__heading .accordion__button{
+  @apply rounded-t-lg
+}
+
+.accordion__item:last-child .accordion__heading .accordion__button{
+  @apply rounded-b-lg
+}

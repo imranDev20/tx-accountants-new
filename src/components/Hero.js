@@ -1,17 +1,41 @@
-import React, { useState } from "react";
-import { AnchorButton, NormalButton } from "./Button";
+import React from "react";
+import { useStaticQuery, graphql } from "gatsby";
+import { NormalButton } from "./Button";
 import heroVideo from "../videos/money.mp4";
 import { motion } from "framer-motion";
 import AnimatedText from "./AnimatedText";
 import "../styles/animation.css";
 
 const Hero = () => {
+  const data = useStaticQuery(graphql`
+    query HeroQuery {
+      strapiPage {
+        blocks {
+          ... on STRAPI__COMPONENT_BLOCKS_HERO {
+            heroButton {
+              label
+            }
+            titleBig
+            titleSmall
+            heroBackground {
+              localFile {
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const heroData = data.strapiPage.blocks[0];
+
   // Placeholder text data, as if from API
   const placeholderText = [
-    { type: "heading1", text: "The smartest way" },
+    { type: "heading1", text: heroData.titleBig },
     {
       type: "heading2",
-      text: "To manage your accounts with us",
+      text: heroData.titleSmall,
     },
   ];
 
@@ -60,7 +84,7 @@ const Hero = () => {
           animate={{ y: 0, opacity: 1 }}
         >
           <NormalButton className="px-5 py-3 mt-5">
-            Get an Appointment
+            {heroData.heroButton.label}
           </NormalButton>
         </motion.div>
       </div>

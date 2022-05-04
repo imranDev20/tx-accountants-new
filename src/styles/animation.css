@@ -1,6 +1,6 @@
 .hero-animated-text h2{
-  @apply text-2xl md:text-4xl lg:text-5xl xl:text-6xl uppercase font-extrabold
+  @apply text-2xl md:text-4xl lg:text-5xl uppercase font-extrabold
 }
 .hero-animated-text h3{
-  @apply text-base md:text-xl lg:text-2xl xl:text-3xl uppercase font-normal mt-3
+  @apply text-base md:text-xl lg:text-2xl uppercase font-normal mt-3
 }

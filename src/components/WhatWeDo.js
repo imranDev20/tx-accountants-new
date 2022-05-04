@@ -1,29 +1,41 @@
 import React from "react";
 import WorkCard from "./WorkCard";
 import { LinkButton } from "./Button";
-import BookKeepingIcon from "../images/icons/bookkeeping.svg";
-import ManagementAccountsIcon from "../images/icons/management-accounts.svg";
-import CorporateTaxReturnIcon from "../images/icons/corporate-tax-return.svg";
-import PayrollProcessingIcon from "../images/icons/payroll-processing.svg";
-import CompanySecretarialIcon from "../images/icons/company-secretarial.svg";
-import AccountsPreparationIcon from "../images/icons/accounts-preparation.svg";
-import VatReturn from "../images/icons/vat-return.svg";
-import PersonalTaxReturnIcon from "../images/icons/personal-tax-return.svg";
-import CompanyFormationIcon from "../images/icons/company-formation.svg";
+import { useStaticQuery, graphql } from "gatsby";
 
 import { useInView } from "react-intersection-observer";
 
 const WhatWeDo = () => {
-  const { ref, inView } = useInView({ threshold: 0.4 });
+  const { ref, inView } = useInView({ threshold: 0.3 });
 
-  const works = [
-    { id: 1, name: "Personal Tax Returns", icon: PersonalTaxReturnIcon },
-    { id: 2, name: "Accounts Preparation", icon: AccountsPreparationIcon },
-    { id: 3, name: "Company Secretarial", icon: CompanySecretarialIcon },
-    { id: 4, name: "Payroll Processing", icon: PayrollProcessingIcon },
-    { id: 5, name: "Corporation Tax Returns", icon: CorporateTaxReturnIcon },
-    { id: 6, name: "Management Accounts", icon: ManagementAccountsIcon },
-  ];
+  const data = useStaticQuery(graphql`
+    query ServicesQuery {
+      strapiPage(strapi_id: { eq: 1 }) {
+        blocks {
+          ... on STRAPI__COMPONENT_BLOCKS_SERVICES {
+            servicesIconAndText {
+              strapi_id
+              servicesText
+              servicesIcon {
+                strapi_id
+                alternativeText
+                localFile {
+                  publicURL
+                  url
+                  extension
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const servicesData = data.strapiPage.blocks[2].servicesIconAndText;
 
   return (
     <section className="bg-neutral-100 w-full py-14">
@@ -46,14 +58,17 @@ const WhatWeDo = () => {
           accounting services, so you will never have to be surprised with
           unexpected bill.
         </p>
-        <div ref={ref} className="grid grid-cols-3 gap-10 my-10">
-          {works.map((work, i) => (
+        <div
+          ref={ref}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10 my-10"
+        >
+          {servicesData.map((service, i) => (
             <WorkCard
-              key={work.id}
+              key={service.strapi_id}
               index={i}
               inView={inView}
-              name={work.name}
-              icon={work.icon}
+              name={service.servicesText}
+              icon={service.servicesIcon.localFile.url}
             />
           ))}
         </div>

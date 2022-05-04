@@ -1,10 +1,32 @@
 import React, { useEffect } from "react";
+import { useStaticQuery, graphql } from "gatsby";
 import { LinkButton } from "./Button";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 
 const About = () => {
+  const data = useStaticQuery(graphql`
+    query AboutQuery {
+      strapiPage {
+        blocks {
+          ... on STRAPI__COMPONENT_BLOCKS_ABOUT {
+            aboutButton {
+              label
+              link
+            }
+            aboutHeader {
+              sectionTitle
+              sectionDetails
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const aboutData = data.strapiPage.blocks[1];
+
   const { ref, inView } = useInView({ threshold: 0.3 });
   const animationParagraph = useAnimation();
   const animationHeading = useAnimation();
@@ -66,18 +88,19 @@ const About = () => {
           animate={animationHeading}
           className={`text-neutral-700 text-3xl font-semibold `}
         >
-          Welcome to <span className="text-secondary-dark">TX Accountants</span>
+          {aboutData.aboutHeader.sectionTitle}
         </motion.h2>
         <motion.p
           animate={animationParagraph}
           className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-loose"
         >
-          We help sole proprietors, self-employed consultants, start-ups and
-          small-to-midsize organizations with a full suite of affordable tax and
-          accounting services.
+          {aboutData.aboutHeader.sectionDetails}
         </motion.p>
-        <LinkButton animationButton={animationButton} to="/about-us/">
-          More About Us
+        <LinkButton
+          animationButton={animationButton}
+          to={`/${aboutData.aboutButton.link}/`}
+        >
+          {aboutData.aboutButton.label}
         </LinkButton>
       </div>
     </section>

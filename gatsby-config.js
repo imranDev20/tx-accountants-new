@@ -5,7 +5,75 @@ require("dotenv").config({
 const strapiConfig = {
   apiURL: process.env.STRAPI_API_URL,
   accessToken: process.env.STRAPI_TOKEN,
-  collectionTypes: [`test`, `message`, `blog`],
+  collectionTypes: [
+    {
+      singularName: "test",
+      queryParams: {
+        // Populate media and relations
+        // Make sure to not specify the fields key so the api always returns the updatedAt
+        populate: {
+          image: "*",
+          images: "*",
+          testDZ: {
+            populate: {
+              image: "*",
+              images: "*",
+              testSingleMedia: {
+                image: "*",
+              },
+              repeatableComponentTesting: {
+                populate: {
+                  mediaInRepeatable: {
+                    populate: {
+                      image: "*",
+                      images: "*",
+                    },
+                  },
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+
+    {
+      singularName: `page`,
+      queryParams: {
+        // Populate media and relations
+        // Make sure to not specify the fields key so the api always returns the updatedAt
+        populate: {
+          image: "*",
+          images: "*",
+          blocks: {
+            populate: {
+              heroBackground: {
+                populate: {
+                  image: "*",
+                  images: "*",
+                },
+              },
+
+              heroButton: {
+                populate: "*",
+              },
+              aboutButton: {
+                populate: "*",
+              },
+
+              aboutHeader: {
+                populate: "*",
+              },
+              servicesIconAndText: {
+                populate: "*",
+              },
+            },
+          },
+        },
+      },
+    },
+    `blog`,
+  ],
   singleTypes: [],
   queryLimit: 1000,
 };
@@ -31,6 +99,13 @@ module.exports = {
         icon: `src/images/icons/favicon.png`,
       },
     },
+    {
+      resolve: "gatsby-plugin-tidio-chat",
+      options: {
+        tidioKey: process.env.TIDIO_PUBLIC_KEY,
+        enableDuringDevelop: true, // Optional. Disables Tidio chat widget when running Gatsby dev server. Defaults to true.
+      },
+    },
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
     {
@@ -49,6 +124,15 @@ module.exports = {
           `open sans\:300,400,500,600,700,800,900`, // you can also specify font weights and styles
         ],
         display: "swap",
+      },
+    },
+    {
+      resolve: `gatsby-plugin-nprogress`,
+      options: {
+        // Setting a color is optional.
+        color: `purple`,
+        // Disable the loading spinner.
+        showSpinner: true,
       },
     },
   ],

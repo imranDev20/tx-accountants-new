@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body{
-  @apply bg-white overflow-x-hidden 
+  @apply bg-white overflow-x-hidden font-['open_sans']
 }
 
 h1, h2, h3, h4, h5, h6{
@@ -11,5 +11,11 @@ h1, h2, h3, h4, h5, h6{
 }
 
 p{
-  @apply font-['open_sans'] text-[1.105rem]
+  @apply font-['open_sans']
+}
+#nprogress .bar{
+  position: fixed!important;
+  top: 78px!important;
+  z-index: 100000000!important;
+  height: 4px!important;
 }

@@ -52,10 +52,10 @@ const WhyUs = () => {
               return (
                 <div
                   key={point.id}
-                  className="flex items-center my-7 font-light"
+                  className="flex items-center my-5 font-light"
                 >
-                  <span className="mr-3 text-2xl">{point.icon}</span>
-                  <span className="text-xl">{point.name}</span>
+                  <span className="mr-3 text-xl">{point.icon}</span>
+                  <span className="text-lg">{point.name}</span>
                 </div>
               );
             })}

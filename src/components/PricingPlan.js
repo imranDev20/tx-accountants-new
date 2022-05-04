@@ -42,7 +42,7 @@ const PricingPlan = () => {
           <h2 className="text-3xl text-secondary mt-14 mb-5 font-semibold">
             Get Your Plan
           </h2>
-          <div className="grid grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             {prices.map((price) => (
               <PricingCard
                 key={price.id}
