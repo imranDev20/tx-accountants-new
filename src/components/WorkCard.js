@@ -9,10 +9,10 @@ const WorkCard = ({ name, icon, inView, index }) => {
     if (inView) {
       animateWorkCard.start({
         opacity: 1,
-        scale: 1,
+        y: 0,
         transition: {
           type: "spring",
-          duration: index * 0.5,
+          duration: (index + 1) * 1,
           bounce: 0.2,
         },
       });
@@ -20,7 +20,7 @@ const WorkCard = ({ name, icon, inView, index }) => {
     if (!inView) {
       animateWorkCard.start({
         opacity: 0,
-        scale: 0,
+        y: 100,
       });
     }
   }, [inView]);

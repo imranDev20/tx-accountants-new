@@ -36,12 +36,9 @@ const strapiConfig = {
         },
       },
     },
-
     {
       singularName: `page`,
       queryParams: {
-        // Populate media and relations
-        // Make sure to not specify the fields key so the api always returns the updatedAt
         populate: {
           image: "*",
           images: "*",
@@ -53,18 +50,19 @@ const strapiConfig = {
                   images: "*",
                 },
               },
-
               heroButton: {
                 populate: "*",
               },
               aboutButton: {
                 populate: "*",
               },
-
               aboutHeader: {
                 populate: "*",
               },
               servicesIconStack: {
+                populate: "*",
+              },
+              company: {
                 populate: "*",
               },
             },

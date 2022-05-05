@@ -1,4 +1,4 @@
-import { Link, useStaticQuery, graphql } from "gatsby";
+import { Link } from "gatsby";
 import React from "react";
 import { useMenuQuery } from "../hooks/useMenuQuery";
 

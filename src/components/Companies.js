@@ -1,30 +1,65 @@
 import React from "react";
-import CapiumLogo from "../images/capium.png";
-import IfaLogo from "../images/ifa-logo.png";
-import TaxiLogo from "../images/taxi-resized-logo.png";
-import QuickBooksLogo from "../images/quickbooks.svg";
+import { useStaticQuery, graphql } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
 
 const Companies = () => {
-  const companies = [
-    { id: 1, logo: IfaLogo },
-    { id: 2, logo: TaxiLogo, shortLength: true },
-    { id: 3, logo: CapiumLogo },
-    { id: 4, logo: QuickBooksLogo },
-  ];
+  const data = useStaticQuery(graphql`
+    query CompanyQuery {
+      strapiPage {
+        blocks {
+          ... on STRAPI__COMPONENT_BLOCKS_COMPANIES {
+            company {
+              companyURL
+              tallLength
+              strapi_id
+              companyImage {
+                alternativeText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData(placeholder: TRACED_SVG, width: 480)
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const companies = data.strapiPage.blocks[4].company;
+
   return (
     <section className="w-full bg-white">
       <div className="py-20 max-w-4xl mx-auto px-20 grid grid-cols-4 gap-10">
-        {companies.map((company) => (
-          <div className={`flex items-center`} key={company.id}>
-            <img
-              className={`w-full h-full object-contain cursor-pointer p-5 ${
-                company.shortLength ? `h-[75%]` : `h-full`
-              }`}
-              src={company.logo}
-              alt=""
-            />
-          </div>
-        ))}
+        {companies.map((company) => {
+          const image = getImage(company.companyImage.localFile);
+
+          return (
+            <div
+              className={`flex items-center justify-center`}
+              key={company.strapi_id}
+            >
+              <a rel="noreferrer" target="_blank" href={company.companyURL}>
+                <GatsbyImage
+                  imgClassName={`w-full !object-contain cursor-pointer p-5 ${
+                    company.tallLength ? `!h-[65%] !mt-7` : `h-full`
+                  }`}
+                  image={image}
+                  alt={company.companyImage.alternativeText}
+                />
+              </a>
+
+              {/* <img
+                className={`w-full h-full object-contain cursor-pointer p-5 ${
+                  company.tallLength ? `h-[75%]` : `h-full`
+                }`}
+                src={company.logo}
+                alt=""
+              /> */}
+            </div>
+          );
+        })}
       </div>
     </section>
   );

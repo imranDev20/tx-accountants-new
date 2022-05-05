@@ -13,6 +13,8 @@ h1, h2, h3, h4, h5, h6{
 p{
   @apply font-['open_sans']
 }
+
+
 #nprogress .bar{
   position: fixed!important;
   top: 78px!important;
