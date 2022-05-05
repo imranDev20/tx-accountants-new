@@ -13,10 +13,10 @@ const WhatWeDo = () => {
       strapiPage(strapi_id: { eq: 1 }) {
         blocks {
           ... on STRAPI__COMPONENT_BLOCKS_SERVICES {
-            servicesIconAndText {
+            servicesIconStack {
               strapi_id
-              servicesText
-              servicesIcon {
+              stackText
+              stackIcon {
                 strapi_id
                 alternativeText
                 localFile {
@@ -35,7 +35,7 @@ const WhatWeDo = () => {
     }
   `);
 
-  const servicesData = data.strapiPage.blocks[2].servicesIconAndText;
+  const servicesData = data.strapiPage.blocks[2].servicesIconStack;
 
   return (
     <section className="bg-neutral-100 w-full py-14">
@@ -67,8 +67,8 @@ const WhatWeDo = () => {
               key={service.strapi_id}
               index={i}
               inView={inView}
-              name={service.servicesText}
-              icon={service.servicesIcon.localFile.url}
+              name={service.stackText}
+              icon={service.stackIcon.localFile.url}
             />
           ))}
         </div>

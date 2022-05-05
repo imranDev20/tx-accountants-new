@@ -64,7 +64,7 @@ const strapiConfig = {
               aboutHeader: {
                 populate: "*",
               },
-              servicesIconAndText: {
+              servicesIconStack: {
                 populate: "*",
               },
             },

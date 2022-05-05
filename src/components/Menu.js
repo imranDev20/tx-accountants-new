@@ -1,18 +1,9 @@
 import { Link, useStaticQuery, graphql } from "gatsby";
 import React from "react";
+import { useMenuQuery } from "../hooks/useMenuQuery";
 
 const Menu = () => {
-  const data = useStaticQuery(graphql`
-    query MenuQuery {
-      allStrapiPage {
-        nodes {
-          slug
-          strapi_id
-          title
-        }
-      }
-    }
-  `);
+  const data = useMenuQuery();
 
   const menuItems = data.allStrapiPage.nodes;
 
