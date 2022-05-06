@@ -18,12 +18,8 @@ const BlogDetails = ({ data }) => {
   const currentBlogID = data?.strapiBlog?.strapi_id;
 
   const recentBlogs = allStrapiBlog?.nodes.filter(
-    (recentBlog) => recentBlog?.strapi_id != currentBlogID
+    (recentBlog) => recentBlog?.strapi_id !== currentBlogID
   );
-
-  const recentBlogsReversed = recentBlogs?.reverse();
-
-  console.log(recentBlogsReversed);
 
   return (
     <Layout>
@@ -75,11 +71,11 @@ const BlogDetails = ({ data }) => {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {recentBlogsReversed?.slice(0, 3).map((recentBlog) => (
+          {recentBlogs?.slice(0, 3).map((recentBlog) => (
             <NewsCard
-              key={recentBlog.strapi_id}
-              title={recentBlog.title}
-              slug={recentBlog.slug}
+              key={recentBlog?.strapi_id}
+              title={recentBlog?.title}
+              slug={recentBlog?.slug}
               isRecent
               image={
                 recentBlog?.image[0]?.localFile?.childImageSharp

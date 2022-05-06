@@ -2,8 +2,12 @@ import React from "react";
 import Logo from "./Logo";
 import { Link } from "gatsby";
 import { FaChevronRight } from "react-icons/fa";
+import { useMenuQuery } from "../hooks/useMenuQuery";
 
 const Footer = () => {
+  const data = useMenuQuery();
+  const menuItems = data.allStrapiPage.nodes;
+
   return (
     <footer className="bg-primary text-white py-20">
       <div className="container px-20 mx-auto grid grid-cols-3 gap-10">
@@ -17,6 +21,15 @@ const Footer = () => {
         </div>
         <div className="">
           <h3 className="text-xl font-semibold mb-5">Pages</h3>
+          {menuItems.map((menuItem) => (
+            <Link
+              className="text-white block my-2"
+              key={menuItem.strapi_id}
+              to={menuItem.slug === "home" ? `/` : `/${menuItem.slug}/`}
+            >
+              {menuItem.title}
+            </Link>
+          ))}
         </div>
         <div>
           <h3 className="text-xl font-semibold mb-5">Subscribe</h3>

@@ -36,12 +36,27 @@ const strapiConfig = {
         },
       },
     },
+    // {
+    //   singularName: `page`,
+    //   queryParams: {
+    //     populate: {
+    //       image: "*",
+    //       images: "*",
+    //       blocks: {
+    //         populate: "*",
+    //       },
+    //     },
+    //   },
+    // },
     {
       singularName: `page`,
       queryParams: {
         populate: {
           image: "*",
           images: "*",
+          author: {
+            populate: "*",
+          },
           blocks: {
             populate: {
               heroBackground: {
@@ -71,6 +86,15 @@ const strapiConfig = {
       },
     },
     `blog`,
+    {
+      singularName: `user`,
+      queryParams: {
+        populate: {
+          image: "*",
+          images: "*",
+        },
+      },
+    },
   ],
   singleTypes: [],
   queryLimit: 1000,

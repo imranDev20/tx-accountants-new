@@ -12,7 +12,7 @@ const WorkCard = ({ name, icon, inView, index }) => {
         y: 0,
         transition: {
           type: "spring",
-          duration: (index + 1) * 1,
+          duration: (index + 1) * 0.8,
           bounce: 0.2,
         },
       });
@@ -23,7 +23,7 @@ const WorkCard = ({ name, icon, inView, index }) => {
         y: 100,
       });
     }
-  }, [inView]);
+  }, [inView, animateWorkCard, index]);
 
   return (
     <motion.div

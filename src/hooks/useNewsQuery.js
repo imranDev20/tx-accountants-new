@@ -3,7 +3,7 @@ import { graphql, useStaticQuery } from "gatsby";
 export const useNewsQuery = () => {
   const data = useStaticQuery(graphql`
     query NewsPageQuery {
-      allStrapiBlog {
+      allStrapiBlog(sort: { fields: publishedAt, order: DESC }) {
         nodes {
           strapi_id
           title

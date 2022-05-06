@@ -6,7 +6,7 @@ import { useStaticQuery, graphql } from "gatsby";
 import { useInView } from "react-intersection-observer";
 
 const WhatWeDo = () => {
-  const { ref, inView } = useInView({ threshold: 0.3 });
+  const { ref, inView } = useInView({ threshold: 0.1 });
 
   const data = useStaticQuery(graphql`
     query ServicesQuery {

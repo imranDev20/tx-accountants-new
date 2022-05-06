@@ -18,7 +18,7 @@ const News = () => {
   `;
 
   const { allStrapiBlog } = useNewsQuery();
-  const blogs = allStrapiBlog.nodes;
+  const blogs = allStrapiBlog?.nodes;
 
   return (
     <section className="w-full bg-white py-20">
@@ -27,7 +27,7 @@ const News = () => {
           Important News
         </h2>
         <div className="flex justify-center items-center my-10">
-          {blogs ? (
+          {
             <Swiper
               modules={[Navigation, Pagination, A11y, Autoplay]}
               spaceBetween={50}
@@ -49,7 +49,7 @@ const News = () => {
               {blogs.map((blog) => {
                 const blogImage = getImage(blog?.image[0]?.localFile);
                 return (
-                  <SwiperSlide key={blog.strapi_id}>
+                  <SwiperSlide key={blog?.strapi_id}>
                     <NewsCard
                       slug={blog?.slug}
                       title={blog?.title}
@@ -59,14 +59,7 @@ const News = () => {
                 );
               })}
             </Swiper>
-          ) : (
-            <ScaleLoader
-              color={`#525252`}
-              loading={!blogs}
-              css={override}
-              size={150}
-            />
-          )}
+          }
         </div>
       </div>
     </section>

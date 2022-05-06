@@ -27,7 +27,7 @@ const About = () => {
 
   const aboutData = data.strapiPage.blocks[1];
 
-  const { ref, inView } = useInView({ threshold: 0.3 });
+  const { ref, inView } = useInView({ threshold: 0.1 });
   const animationParagraph = useAnimation();
   const animationHeading = useAnimation();
   const animationButton = useAnimation();
@@ -39,29 +39,30 @@ const About = () => {
         scale: 1.0,
         opacity: 1,
         transition: {
-          type: "spring",
+          type: "tween",
           duration: 0.5,
-          bounce: 0.3,
+          // bounce: 0.3,
+          delay: 0.0,
         },
       });
       animationParagraph.start({
         scale: 1.0,
         opacity: 1,
         transition: {
-          type: "spring",
+          type: "tween",
           duration: 0.5,
           delay: 0.3,
-          bounce: 0.3,
+          // bounce: 0.3,
         },
       });
       animationButton.start({
         scale: 1.0,
         opacity: 1,
         transition: {
-          type: "spring",
+          type: "tween",
           duration: 0.5,
-          delay: 0.5,
-          bounce: 0.3,
+          delay: 0.6,
+          // bounce: 0.3,
         },
       });
     }
@@ -79,7 +80,7 @@ const About = () => {
         opacity: 0,
       });
     }
-  }, [inView]);
+  }, [inView, animationButton, animationHeading, animationParagraph]);
 
   return (
     <section className="mt-[100vh] bg-white w-full border-t-4 border-secondary py-[70px]">

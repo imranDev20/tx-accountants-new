@@ -16,7 +16,11 @@ const Companies = () => {
                 alternativeText
                 localFile {
                   childImageSharp {
-                    gatsbyImageData(placeholder: TRACED_SVG, width: 480)
+                    gatsbyImageData(
+                      placeholder: TRACED_SVG
+                      width: 320
+                      quality: 70
+                    )
                   }
                 }
               }
@@ -42,21 +46,14 @@ const Companies = () => {
             >
               <a rel="noreferrer" target="_blank" href={company.companyURL}>
                 <GatsbyImage
-                  imgClassName={`w-full !object-contain cursor-pointer p-5 ${
-                    company.tallLength ? `!h-[65%] !mt-7` : `h-full`
+                  className="grayscale hover:filter-none transition-all"
+                  imgClassName={`w-full !object-contain cursor-pointer  ${
+                    company.tallLength ? `!h-[60%] !mt-8` : `h-full`
                   }`}
                   image={image}
                   alt={company.companyImage.alternativeText}
                 />
               </a>
-
-              {/* <img
-                className={`w-full h-full object-contain cursor-pointer p-5 ${
-                  company.tallLength ? `h-[75%]` : `h-full`
-                }`}
-                src={company.logo}
-                alt=""
-              /> */}
             </div>
           );
         })}

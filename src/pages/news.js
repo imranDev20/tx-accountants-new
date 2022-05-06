@@ -23,11 +23,11 @@ const NewsPage = () => {
 
           return (
             <div
-              key={blog.strapi_id}
+              key={blog?.strapi_id}
               className="flex flex-col lg:flex-row my-10 border rounded overflow-hidden"
             >
               <div className="lg:w-1/2 ">
-                <Link to={`/news/${blog.slug}`}>
+                <Link to={`/news/${blog?.slug}`}>
                   <GatsbyImage
                     className="w-full h-full object-cover"
                     image={blogImage}
@@ -38,14 +38,15 @@ const NewsPage = () => {
               <div className="lg:w-1/2 p-7">
                 <div className="mb-3 text-neutral-700 text-sm">
                   <p className="flex items-center">
-                    <FaUserCircle className="mr-1" /> {blog.author.displayName}
+                    <FaUserCircle className="mr-1" />{" "}
+                    {blog?.author?.displayName}
                   </p>
                   <p className="flex items-center">
-                    <FaClock className="mr-1" /> {blog.publishedAt}
+                    <FaClock className="mr-1" /> {blog?.publishedAt}
                   </p>
                 </div>
 
-                <Link to={`/news/${blog.slug}`}>
+                <Link to={`/news/${blog?.slug}`}>
                   <h4 className="text-3xl my-3 font-medium leading-snug text-neutral-700 hover:text-secondary transition-colors">
                     {title.length > 45 ? title.substring(0, 40) + `...` : title}
                   </h4>
