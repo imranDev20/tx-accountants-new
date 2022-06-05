@@ -101,6 +101,7 @@ const strapiConfig = {
 };
 
 module.exports = {
+  trailingSlash: "never",
   siteMetadata: {
     title: `Tx Accountants`,
     siteUrl: `https://www.yourdomain.tld`,
@@ -139,13 +140,18 @@ module.exports = {
       __key: "images",
     },
     {
-      resolve: `gatsby-plugin-google-fonts`,
+      resolve: "@slixites/gatsby-plugin-google-fonts",
       options: {
         fonts: [
-          `inter\:200,300,400,500,600,700,800,900`,
-          `open sans\:300,400,500,600,700,800,900`, // you can also specify font weights and styles
+          "inter:100,200,300,400,500,600,700,800,900",
+          "open sans:300,400,500,600,700",
         ],
         display: "swap",
+        preconnect: true,
+        attributes: {
+          rel: "stylesheet preload prefetch",
+          as: "style",
+        },
       },
     },
     {

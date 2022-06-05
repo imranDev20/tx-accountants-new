@@ -5,8 +5,8 @@ import { FiMapPin } from "react-icons/fi";
 const InfoStrip = () => {
   return (
     <section className="w-full bg-secondary py-7 text-white">
-      <div className="container mx-auto px-20 grid grid-cols-3">
-        <div className="flex items-start  justify-center">
+      <div className="container mx-auto px-20 grid md:grid-cols-2 lg:grid-cols-3">
+        <div className="flex items-start  justify-center mb-5">
           <div className="flex items-center text-lg">
             <BsTelephone className="mr-2 " />
             <a href="tel:020 3488 3312">020 3488 3312</a>

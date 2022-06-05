@@ -10,7 +10,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
     }
   `);
-  data.allStrapiBlog.nodes.forEach((node) => {
+  data?.allStrapiBlog?.nodes.forEach((node) => {
     actions.createPage({
       path: "/news/" + node?.slug,
       component: path.resolve("./src/templates/blog-details.js"),

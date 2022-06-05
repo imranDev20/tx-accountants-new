@@ -2,7 +2,7 @@ import React from "react";
 import Layout from "../components/Layout";
 
 const NotFoundPage = () => {
-  return <div>NotFoundPage</div>;
+  return <Layout>NotFoundPage</Layout>;
 };
 
 export default NotFoundPage;

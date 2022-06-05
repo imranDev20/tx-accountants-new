@@ -13,7 +13,7 @@ const Menu = () => {
         <Link
           className="mx-4 text-white"
           key={menuItem.strapi_id}
-          to={menuItem.slug === "home" ? `/` : `/${menuItem.slug}/`}
+          to={menuItem.slug === "home" ? `/` : `/${menuItem.slug}`}
         >
           {menuItem.title}
         </Link>

@@ -31,17 +31,17 @@ const Companies = () => {
     }
   `);
 
-  const companies = data.strapiPage.blocks[4].company;
+  const companies = data?.strapiPage?.blocks[4]?.company;
 
   return (
     <section className="w-full bg-white">
-      <div className="py-20 max-w-4xl mx-auto px-20 grid grid-cols-4 gap-10">
-        {companies.map((company) => {
-          const image = getImage(company.companyImage.localFile);
+      <div className="py-5 max-w-4xl mx-auto px-20 grid grid-cols-4 gap-10">
+        {companies?.map((company) => {
+          const image = getImage(company?.companyImage?.localFile);
 
           return (
             <div
-              className={`flex items-center justify-center`}
+              className={`flex w-28 items-center justify-center`}
               key={company.strapi_id}
             >
               <a rel="noreferrer" target="_blank" href={company.companyURL}>
@@ -51,7 +51,7 @@ const Companies = () => {
                     company.tallLength ? `!h-[60%] !mt-8` : `h-full`
                   }`}
                   image={image}
-                  alt={company.companyImage.alternativeText}
+                  alt={company?.companyImage?.alternativeText}
                 />
               </a>
             </div>

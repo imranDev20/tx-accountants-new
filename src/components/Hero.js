@@ -1,7 +1,6 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { NormalButton } from "./Button";
-import heroVideo from "../videos/money.mp4";
 import { motion } from "framer-motion";
 import AnimatedText from "./AnimatedText";
 import "../styles/animation.css";
@@ -47,9 +46,11 @@ const Hero = () => {
     },
   };
 
+  console.log(heroData);
+
   return (
     <section className="w-full">
-      <div className="fixed top-0 lg:top-22 w-full h-[calc(100vh-0px)] -z-50 overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:w-full before:h-full before:bg-primary/60">
+      <div className="fixed top-0 lg:top-22 w-full h-[calc(100vh-0px)] -z-50 overflow-hidden before:content-[''] before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:w-full before:h-full before:bg-primary/75">
         <video
           className="w-full h-full object-cover"
           autoPlay
@@ -57,7 +58,10 @@ const Hero = () => {
           loop
           width="100%"
         >
-          <source src={heroVideo} type="video/mp4" />
+          <source
+            src={heroData?.heroBackground?.localFile?.url}
+            type="video/mp4"
+          />
           Your browser does not support HTML5 video.
         </video>
       </div>

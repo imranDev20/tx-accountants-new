@@ -6,6 +6,7 @@ const AboutPage = () => {
   return (
     <Layout>
       <Seo title="About" />
+      About Page
     </Layout>
   );
 };

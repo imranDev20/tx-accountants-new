@@ -25,7 +25,7 @@ const About = () => {
     }
   `);
 
-  const aboutData = data.strapiPage.blocks[1];
+  const aboutData = data?.strapiPage?.blocks[1];
 
   const { ref, inView } = useInView({ threshold: 0.1 });
   const animationParagraph = useAnimation();
@@ -36,72 +36,57 @@ const About = () => {
   useEffect(() => {
     if (inView) {
       animationHeading.start({
-        scale: 1.0,
+        scale: 1,
         opacity: 1,
-        transition: {
-          type: "tween",
-          duration: 0.5,
-          // bounce: 0.3,
-          delay: 0.0,
-        },
+        transition: { type: "spring" },
       });
       animationParagraph.start({
-        scale: 1.0,
+        scale: 1,
         opacity: 1,
-        transition: {
-          type: "tween",
-          duration: 0.5,
-          delay: 0.3,
-          // bounce: 0.3,
-        },
+        transition: { type: "spring", delay: 0.2 },
       });
       animationButton.start({
-        scale: 1.0,
+        scale: 1,
         opacity: 1,
-        transition: {
-          type: "tween",
-          duration: 0.5,
-          delay: 0.6,
-          // bounce: 0.3,
-        },
+        transition: { type: "spring", delay: 0.4 },
       });
     }
     if (!inView) {
       animationHeading.start({
-        scale: 0.5,
         opacity: 0,
+        scale: 0.8,
       });
       animationParagraph.start({
-        scale: 0.5,
         opacity: 0,
+        scale: 0.8,
       });
       animationButton.start({
-        scale: 0.5,
         opacity: 0,
+        scale: 0.8,
       });
     }
   }, [inView, animationButton, animationHeading, animationParagraph]);
 
   return (
     <section className="mt-[100vh] bg-white w-full border-t-4 border-secondary py-[70px]">
-      <div ref={ref} className="container mx-auto px-20 text-center">
+      <div className="container mx-auto px-20 text-center">
         <motion.h2
+          ref={ref}
           animate={animationHeading}
           className={`text-neutral-700 text-3xl font-semibold `}
         >
-          {aboutData.aboutHeader.sectionTitle}
+          {aboutData?.aboutHeader?.sectionTitle}
         </motion.h2>
         <motion.p
+          ref={ref}
           animate={animationParagraph}
           className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-loose"
         >
-          {aboutData.aboutHeader.sectionDetails}
+          {aboutData?.aboutHeader?.sectionDetails}
         </motion.p>
-        <LinkButton
-          animationButton={animationButton}
-          to={`/${aboutData.aboutButton.link}/`}
-        >
-          {aboutData.aboutButton.label}
+
+        <LinkButton to={`/${aboutData.aboutButton.link}`}>
+          {aboutData?.aboutButton?.label}
         </LinkButton>
       </div>
     </section>
