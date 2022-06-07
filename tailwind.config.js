@@ -11,7 +11,7 @@ module.exports = {
         },
         secondary: {
           DEFAULT: "rgb(133, 77, 255)",
-          light: "rgba(133, 77, 255, 0.1)",
+          light: "rgba(162, 128, 255)",
           dark: "#5933AA",
         },
         fontColor: {

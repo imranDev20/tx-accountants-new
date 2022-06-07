@@ -2,22 +2,24 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
-  @apply bg-white overflow-x-hidden font-['open_sans']
+body {
+  @apply bg-white overflow-x-hidden font-['open_sans'];
 }
 
-h1, h2, h3, h4, h5, h6{
-  @apply font-['inter']
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply font-['inter'];
 }
 
-p{
-  @apply font-['open_sans']
+p {
+  @apply font-['open_sans'];
 }
 
-
-#nprogress .bar{
-  position: fixed!important;
-  top: 78px!important;
-  z-index: 100000000!important;
-  height: 4px!important;
+#nprogress .bar {
+  z-index: 100000000 !important;
+  height: 4px !important;
 }

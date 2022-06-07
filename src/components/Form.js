@@ -1,6 +1,7 @@
 import React from "react";
 import { useForm, ValidationError } from "@formspree/react";
 import { FaCheckCircle } from "react-icons/fa";
+import { FiSend } from "react-icons/fi";
 import { NormalButton } from "./Button";
 
 const Form = ({ isModal }) => {
@@ -41,11 +42,11 @@ const Form = ({ isModal }) => {
           errors={state.errors}
         />
         <NormalButton
-          className={`text-white py-2 inline-block w-1/2 mx-auto`}
+          className={`text-white py-2 w-1/2 mx-auto flex items-center justify-center`}
           type="submit"
           disabled={state.submitting}
         >
-          Submit
+          Submit <FiSend className="ml-2 text-sm" />
         </NormalButton>
       </form>
       {state.succeeded && (
