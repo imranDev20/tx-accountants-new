@@ -51,9 +51,11 @@ const NewsPage = () => {
                     {title.length > 45 ? title.substring(0, 40) + `...` : title}
                   </h4>
                 </Link>
-                <ReactMarkdown
-                  className="text-neutral-600"
-                  children={content.substr(0, 130) + "..."}
+
+                <p
+                  dangerouslySetInnerHTML={{
+                    __html: content.substr(0, 130) + "...",
+                  }}
                 />
                 <hr className="h-2 mt-10 mb-3" />
                 <div className="flex text-sm justify-between items-center">

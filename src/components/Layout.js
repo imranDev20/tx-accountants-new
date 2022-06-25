@@ -31,12 +31,12 @@ const Layout = ({ children }) => {
           stiffness: 75,
           duration: 0.3,
         }}
-        className="mt-[83px] min-h-screen"
+        className="mt-[75px] min-h-screen"
       >
         {children}
+        <Companies />
+        <InfoStrip />
       </motion.main>
-      <Companies />
-      <InfoStrip />
       <Footer />
     </>
   );

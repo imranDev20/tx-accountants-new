@@ -1,42 +1,28 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import { BsEyeSlash, BsHourglassSplit, BsCloudArrowDown } from "react-icons/bs";
-import { FaUsers } from "react-icons/fa";
-import { BiSupport } from "react-icons/bi";
-import { AiFillAccountBook } from "react-icons/ai";
 
 const WhyUs = () => {
-  const points = [
-    {
-      id: 1,
-      name: "Fixed Fee- No Hidden Cost",
-      icon: <BsEyeSlash />,
-    },
-    {
-      id: 2,
-      name: "Never Miss a deadline",
-      icon: <BsEyeSlash />,
-    },
-    {
-      id: 3,
-      name: "HMRC Authorized Agent",
-      icon: <BsEyeSlash />,
-    },
-    {
-      id: 4,
-      name: "Chartered Certified Accountants",
-      icon: <BsEyeSlash />,
-    },
-    {
-      id: 5,
-      name: "Guaranteed response within 24 hours",
-      icon: <BsEyeSlash />,
-    },
-    {
-      id: 6,
-      name: "Fully Cloud Based service available so, you never have to schedule an appointment, leave your office, or wait in long queues to get your business tax and accounting done right.",
-      icon: <BsEyeSlash />,
-    },
-  ];
+  const data = useStaticQuery(graphql`
+    query MyQuery {
+      strapiPage(title: { eq: "Home" }) {
+        blocks {
+          ... on STRAPI__COMPONENT_BLOCKS_WHY_US {
+            whyUsIconStack {
+              stackText
+              stackIcon {
+                localFile {
+                  url
+                  publicURL
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const whyUsPoints = data?.strapiPage?.blocks[4]?.whyUsIconStack;
 
   return (
     <section className="bg-primary">
@@ -48,14 +34,16 @@ const WhyUs = () => {
             Why Us
           </h2>
           <div className="mt-10">
-            {points.map((point) => {
+            {whyUsPoints.map((point, index) => {
               return (
-                <div
-                  key={point.id}
-                  className="flex items-center my-5 font-light"
-                >
-                  <span className="mr-3 text-xl">{point.icon}</span>
-                  <span className="text-lg">{point.name}</span>
+                <div key={index} className="flex items-center my-5 font-light">
+                  <img
+                    className="w-6 mr-3"
+                    src={point?.stackIcon?.localFile?.publicURL}
+                    alt=""
+                  />
+
+                  <span className="text-lg">{point?.stackText}</span>
                 </div>
               );
             })}

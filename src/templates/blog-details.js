@@ -1,25 +1,32 @@
-import { graphql, Link } from "gatsby";
+import { graphql, Link, useStaticQuery } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React from "react";
+import React, { useEffect } from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { FaUserCircle, FaClock } from "react-icons/fa";
 import { useNewsQuery } from "../hooks/useNewsQuery";
 import NewsCard from "../components/NewsCard";
 import ReactMarkdown from "react-markdown";
+import { Disqus, CommentCount } from "gatsby-plugin-disqus";
 
 const BlogDetails = ({ data }) => {
-  const { title, publishedAt, content } = data?.strapiBlog;
+  const { title, publishedAt, content, slug, strapi_id } = data?.strapiBlog;
   const { displayName } = data?.strapiBlog?.author;
   const blogImage = getImage(data?.strapiBlog?.image[0]?.localFile);
 
   // Finding Recent
-  const { allStrapiBlog } = useNewsQuery();
+  const { allStrapiBlog, site } = useNewsQuery();
   const currentBlogID = data?.strapiBlog?.strapi_id;
 
   const recentBlogs = allStrapiBlog?.nodes.filter(
     (recentBlog) => recentBlog?.strapi_id !== currentBlogID
   );
+
+  let disqusConfig = {
+    url: `${site.siteMetadata.siteUrl + "news/" + slug}`,
+    identifier: slug,
+    title: title,
+  };
 
   return (
     <Layout>
@@ -56,9 +63,15 @@ const BlogDetails = ({ data }) => {
           <div className="text-neutral-700">
             <h1 className="text-3xl my-2 leading-snug font-medium">{title}</h1>
             {/* <p className="text-neutral-600 my-3">{content?.data?.content}</p> */}
-            <ReactMarkdown>{content?.data?.content}</ReactMarkdown>
+            {/* <ReactMarkdown>{}</ReactMarkdown> */}
+            <p dangerouslySetInnerHTML={{ __html: content?.data?.content }} />
           </div>
         </div>
+      </section>
+
+      <section className="max-w-6xl mx-auto px-20 my-20">
+        {/* <CommentCount config={disqusConfig} placeholder={"..."} /> */}
+        <Disqus config={disqusConfig} />
       </section>
 
       <section className="max-w-6xl mx-auto px-20 mb-20 py-5">
@@ -113,6 +126,7 @@ export const query = graphql`
           }
         }
       }
+      slug
     }
   }
 `;

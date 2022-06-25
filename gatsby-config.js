@@ -77,6 +77,9 @@ const strapiConfig = {
               servicesIconStack: {
                 populate: "*",
               },
+              whyUsIconStack: {
+                populate: "*",
+              },
               company: {
                 populate: "*",
               },
@@ -104,7 +107,7 @@ module.exports = {
   trailingSlash: "never",
   siteMetadata: {
     title: `Tx Accountants`,
-    siteUrl: `https://www.yourdomain.tld`,
+    siteUrl: `http://localhost:8000/`,
     author: `@imrankabir97`,
   },
   plugins: [
@@ -112,6 +115,12 @@ module.exports = {
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-postcss",
+    {
+      resolve: `gatsby-plugin-disqus`,
+      options: {
+        shortname: `txaccountants`,
+      },
+    },
     {
       resolve: `gatsby-source-strapi`,
       options: strapiConfig,

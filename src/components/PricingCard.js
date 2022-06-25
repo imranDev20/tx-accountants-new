@@ -3,7 +3,7 @@ import { LinkButton } from "./Button";
 
 const PricingCard = ({ name, priceFixed, pricePM }) => {
   return (
-    <div className="shadow-lg px-5 py-10 rounded-lg text-center bg-white">
+    <div className="shadow-lg px-5 py-10 rounded-lg text-center bg-white flex flex-col items-center">
       <h5 className="text-neutral-700 font-semibold text-xl leading-10 mb-2">
         {name}
       </h5>

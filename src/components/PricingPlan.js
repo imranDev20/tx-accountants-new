@@ -53,7 +53,12 @@ const PricingPlan = () => {
             ))}
           </div>
         </div>
-        <LinkButton to="/contact-us/">Contact Us Today!</LinkButton>
+        <LinkButton
+          className="flex items-center justify-center"
+          to="/contact-us/"
+        >
+          Contact Us Today!
+        </LinkButton>
       </div>
     </section>
   );

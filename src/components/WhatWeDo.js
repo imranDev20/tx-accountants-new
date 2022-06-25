@@ -7,40 +7,38 @@ import { motion } from "framer-motion";
 import { useAnimation } from "framer-motion";
 
 const WhatWeDo = () => {
-  const { ref, inView } = useInView({ threshold: 0.1 });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const animationParagraph = useAnimation();
   const animationHeading = useAnimation();
   const animationButton = useAnimation();
 
-  useEffect(() => {
-    if (inView) {
-      animationHeading.start({
-        scale: 1,
-        opacity: 1,
-        transition: { type: "spring" },
-      });
-      animationParagraph.start({
-        scale: 1,
-        opacity: 1,
-        transition: { type: "spring" },
-      });
-    }
+  if (inView) {
+    animationHeading.start({
+      scale: 1,
+      opacity: 1,
+      transition: { type: "spring" },
+    });
+    animationParagraph.start({
+      scale: 1,
+      opacity: 1,
+      transition: { type: "spring" },
+    });
+  }
 
-    if (!inView) {
-      animationHeading.start({
-        opacity: 0,
-        scale: 0.8,
-      });
-      animationParagraph.start({
-        opacity: 0,
-        scale: 0.8,
-      });
-    }
-  }, [inView, animationButton, animationHeading, animationParagraph]);
+  if (!inView) {
+    animationHeading.start({
+      opacity: 0,
+      scale: 0.8,
+    });
+    animationParagraph.start({
+      opacity: 0,
+      scale: 0.8,
+    });
+  }
 
   const data = useStaticQuery(graphql`
     query ServicesQuery {
-      strapiPage(strapi_id: { eq: 1 }) {
+      strapiPage(title: { eq: "Home" }) {
         blocks {
           ... on STRAPI__COMPONENT_BLOCKS_SERVICES {
             servicesIconStack {
@@ -108,9 +106,9 @@ const WhatWeDo = () => {
         </div>
 
         <LinkButton
+          className="justify-center items-center "
           animationButton={animationButton}
           to={`/fixed-fee-pricing/`}
-          ref={ref}
         >
           View Our Pricing Plan
         </LinkButton>

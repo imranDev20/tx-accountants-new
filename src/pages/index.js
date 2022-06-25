@@ -1,6 +1,7 @@
 import React from "react";
 import About from "../components/About";
 import Contact from "../components/Contact";
+import Counter from "../components/Counter";
 import Faq from "../components/Faq";
 import Hero from "../components/Hero";
 import Layout from "../components/Layout";
@@ -12,14 +13,6 @@ import WhatWeDo from "../components/WhatWeDo";
 import WhyUs from "../components/WhyUs";
 
 const IndexPage = () => {
-  // useEffect(() => {
-  //   fetch("http://localhost:1337/api/pages?populate[blocks][populate]=%2A")
-  //     .then((res) => res.json())
-  //     .then((data) => console.log(data));
-  // }, []);
-
-  // http://localhost:1337/api/pages?populate[blocks][populate][servicesIconStack][populate]=stackIcon
-
   return (
     <Layout>
       <Seo title="Home" />
@@ -27,6 +20,7 @@ const IndexPage = () => {
       <About />
       <WhatWeDo />
       <WhyUs />
+      <Counter />
       <PricingPlan />
       <News />
       <Contact />

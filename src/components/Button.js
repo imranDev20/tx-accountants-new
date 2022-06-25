@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "gatsby";
 import { motion, useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -16,29 +16,27 @@ export const AnchorButton = ({ href, className, children, icon }) => {
 
 export const LinkButton = ({ to, className, children }) => {
   const animationButton = useAnimation();
-  const { ref, inView } = useInView({ threshold: 0.1 });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
-  useEffect(() => {
-    if (inView) {
-      animationButton.start({
-        scale: 1,
-        opacity: 1,
-        transition: { type: "spring" },
-      });
-    }
-    if (!inView) {
-      animationButton.start({
-        opacity: 0,
-        scale: 0.8,
-      });
-    }
-  }, [inView]);
+  if (inView) {
+    animationButton.start({
+      scale: 1,
+      opacity: 1,
+      transition: { type: "spring" },
+    });
+  }
+  if (!inView) {
+    animationButton.start({
+      opacity: 0,
+      scale: 0.8,
+    });
+  }
 
   return (
     <motion.div
       ref={ref}
       animate={animationButton}
-      className={`h-12 my-5 flex justify-center items-center ${className}`}
+      className={`h-12 my-5 flex ${className}`}
     >
       <Link to={to}>
         <motion.div

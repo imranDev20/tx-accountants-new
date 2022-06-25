@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -7,21 +7,19 @@ const WorkCard = ({ name, icon, index }) => {
   const { ref, inView } = useInView({ threshold: 0.1 });
   const animateWorkCard = useAnimation();
 
-  useEffect(() => {
-    if (inView) {
-      animateWorkCard.start({
-        scale: 1,
-        opacity: 1,
-        transition: { type: "spring", duration: 0.5, bounce: 0.5 },
-      });
-    }
-    if (!inView) {
-      animateWorkCard.start({
-        opacity: 0,
-        scale: 0.8,
-      });
-    }
-  }, [inView, animateWorkCard, index]);
+  if (inView) {
+    animateWorkCard.start({
+      scale: 1,
+      opacity: 1,
+      transition: { type: "spring", duration: 0.5, bounce: 0.5 },
+    });
+  }
+  if (!inView) {
+    animateWorkCard.start({
+      opacity: 0,
+      scale: 0.8,
+    });
+  }
 
   return (
     <motion.div

@@ -8,7 +8,7 @@ import "../styles/animation.css";
 const Hero = () => {
   const data = useStaticQuery(graphql`
     query HeroQuery {
-      strapiPage {
+      strapiPage(title: { eq: "Home" }) {
         blocks {
           ... on STRAPI__COMPONENT_BLOCKS_HERO {
             heroButton {
@@ -45,8 +45,6 @@ const Hero = () => {
       },
     },
   };
-
-  console.log(heroData);
 
   return (
     <section className="w-full">

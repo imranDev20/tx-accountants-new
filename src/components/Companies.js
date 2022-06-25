@@ -5,7 +5,7 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const Companies = () => {
   const data = useStaticQuery(graphql`
     query CompanyQuery {
-      strapiPage {
+      strapiPage(title: { eq: "Home" }) {
         blocks {
           ... on STRAPI__COMPONENT_BLOCKS_COMPANIES {
             company {

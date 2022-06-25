@@ -30,6 +30,13 @@ export const useNewsQuery = () => {
           }
         }
       }
+      site {
+        siteMetadata {
+          author
+          siteUrl
+          title
+        }
+      }
     }
   `);
   return data;
