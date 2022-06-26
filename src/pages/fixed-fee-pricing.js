@@ -2,7 +2,11 @@ import React from "react";
 import Layout from "../components/Layout";
 
 const FixedFeePricingPage = () => {
-  return <Layout>FixedFeePricingPage</Layout>;
+  return (
+    <Layout>
+      <section></section>
+    </Layout>
+  );
 };
 
 export default FixedFeePricingPage;

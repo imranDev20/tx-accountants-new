@@ -5,11 +5,24 @@ import { Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
 import { FaUserCircle, FaClock, FaHeart } from "react-icons/fa";
 import { useNewsQuery } from "../hooks/useNewsQuery";
-import ReactMarkdown from "react-markdown";
+import { CommentCount } from "gatsby-plugin-disqus";
+import { useEffect } from "react";
 
 const NewsPage = () => {
-  const { allStrapiBlog } = useNewsQuery();
+  const { allStrapiBlog, site } = useNewsQuery();
   const blogs = allStrapiBlog?.nodes;
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  const getData = async () => {
+    const response = await fetch(
+      "https://disqus.com/api/3.0/forums/listPosts.json?forum=txaccountants&api_key=yhC18Md1zY2GWhYYU0W45C0APHaO7OEDRGpYf3mpHiu2u4DHj6MUfw08xGoc9tya"
+    );
+    const users = await response.json();
+    console.log(users);
+  };
 
   return (
     <Layout>
@@ -18,8 +31,14 @@ const NewsPage = () => {
         {blogs.map((blog) => {
           // Simplyfying
           const blogImage = getImage(blog?.image[0]?.localFile);
-          const title = blog?.title;
+          const { title, slug } = blog;
           const content = blog?.content?.data?.content;
+
+          let disqusConfig = {
+            url: `${site?.siteMetadata?.siteUrl + "news/" + slug}`,
+            identifier: slug,
+            title: title,
+          };
 
           return (
             <div
@@ -61,7 +80,7 @@ const NewsPage = () => {
                 <div className="flex text-sm justify-between items-center">
                   <div className="flex items-center">
                     <p className="mr-5">17 views</p>
-                    <p>0 comments</p>
+                    <CommentCount config={disqusConfig} placeholder={"..."} />
                   </div>
                   <button>
                     <FaHeart />
