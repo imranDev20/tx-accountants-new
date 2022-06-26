@@ -6,6 +6,8 @@ import ScrollToTop from "./ScrollToTop";
 import InfoStrip from "./InfoStrip";
 import Companies from "./Companies";
 import { motion } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Layout = ({ children }) => {
   return (
@@ -37,6 +39,7 @@ const Layout = ({ children }) => {
         <Companies />
         <InfoStrip />
       </motion.main>
+      <ToastContainer />
       <Footer />
     </>
   );

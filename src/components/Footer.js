@@ -10,10 +10,10 @@ const Footer = () => {
 
   return (
     <footer className="bg-primary text-white py-20">
-      <div className="container px-20 mx-auto grid-cols-1 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+      <div className="max-w-5xl   mx-auto grid-cols-1 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
         <div className="pr-10">
           <Logo />
-          <p className="font-light my-2">
+          <p className=" my-2">
             We help sole proprietors, self-employed consultants, start-ups and
             small-to-midsize organizations with a full suite of affordable tax
             and accounting services.
@@ -33,7 +33,7 @@ const Footer = () => {
         </div>
         <div>
           <h3 className="text-xl font-semibold mb-5">Subscribe</h3>
-          <p className="mb-5 font-light">
+          <p className="mb-5 ">
             Sign up for Alerts, Special Offers, Education and Updates.
           </p>
           <div className="flex">

@@ -14,9 +14,11 @@ const FixedFeePricingPage = () => {
   return (
     <Layout>
       <Seo title="Fixed Fee Pricing" />
-      <section>
-        <h1>Affordable Price</h1>
-        <div>
+      <section className="relative bg-[url('https://images.unsplash.com/photo-1568658176307-bfbd2873abda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-center before:content-[''] before:absolute before:top-0 before:bottom-0 before:left-0 before:right-0 before:w-full before:h-full before:bg-primary/80 before:z-0">
+        <h1 className="bg-secondary text-center text-white py-5 text-3xl font-medium mb-10 relative z-10">
+          Affordable Price
+        </h1>
+        <div className="max-w-5xl mx-auto relative z-30">
           <div className="flex justify-center items-start">
             <PriceCard
               showModal={showModal}

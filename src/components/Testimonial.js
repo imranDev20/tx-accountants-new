@@ -41,7 +41,7 @@ const Testimonial = () => {
 
   return (
     <section className="w-full bg-neutral-100 py-20">
-      <div className="container mx-auto px-10">
+      <div className="max-w-5xl mx-auto px-10">
         <h2 className="text-neutral-700 text-3xl font-semibold text-center">
           Testimonials
         </h2>

@@ -66,7 +66,7 @@ const About = () => {
 
   return (
     <section className="mt-[100vh] bg-white w-full border-t-4 border-secondary py-[70px]">
-      <div className="container mx-auto px-20 text-center">
+      <div className="max-w-5xl mx-auto text-center">
         <motion.h2
           ref={ref}
           animate={animationHeading}

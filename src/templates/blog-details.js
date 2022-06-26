@@ -31,7 +31,7 @@ const BlogDetails = ({ data }) => {
   return (
     <Layout>
       <Seo title={title} />
-      <section className="max-w-6xl mx-auto px-10 lg:px-20 py-6">
+      <section className="max-w-5xl mx-auto px-10 lg:  py-6">
         <div className="my-6">
           <Link
             className="inline-block text-neutral-700 hover:text-secondary"
@@ -40,7 +40,7 @@ const BlogDetails = ({ data }) => {
             All Posts
           </Link>
         </div>
-        <div className="px-5 md:px-10 lg:px-20 py-14 border">
+        <div className="px-5 md:px-10 lg:  py-14 border">
           <div className="flex items-center text-neutral-700">
             <span className="mr-5 flex items-center text-sm">
               <FaUserCircle className="mr-2" />
@@ -68,12 +68,12 @@ const BlogDetails = ({ data }) => {
         </div>
       </section>
 
-      <section className="max-w-6xl mx-auto px-20 my-20">
+      <section className="max-w-5xl mx-auto   my-20">
         {/* <CommentCount config={disqusConfig} placeholder={"..."} /> */}
         <Disqus config={disqusConfig} />
       </section>
 
-      <section className="max-w-6xl mx-auto px-20 mb-20 py-5">
+      <section className="max-w-5xl mx-auto   mb-20 py-5">
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-neutral-700 text-2xl font-medium">
             Recent Posts

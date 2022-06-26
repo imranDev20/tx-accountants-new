@@ -10,7 +10,7 @@ const PricingPlan = () => {
   ];
   return (
     <section className="bg-neutral-100 py-20">
-      <div className="container mx-auto px-20">
+      <div className="max-w-5xl mx-auto  ">
         <div className="mb-5">
           <h2 className="text-3xl text-neutral-700 mb-3 font-semibold">
             We Are Faster

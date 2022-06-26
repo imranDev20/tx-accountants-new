@@ -18,6 +18,7 @@
     "@emotion/react": "^11.9.0",
     "@formspree/react": "^2.2.4",
     "@slixites/gatsby-plugin-google-fonts": "^1.1.1",
+    "@stripe/stripe-js": "^1.32.0",
     "dotenv": "^16.0.0",
     "framer-motion": "^6.3.1",
     "gatsby": "^4.12.1",
@@ -46,6 +47,7 @@
     "react-markdown": "^8.0.3",
     "react-scroll-to-top": "^1.0.8",
     "react-spinners": "^0.11.0",
+    "react-toastify": "^9.0.5",
     "strapi-plugin-ckeditor5": "^2.1.1-rc.1",
     "swiper": "^8.1.4"
   },

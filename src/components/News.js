@@ -4,25 +4,18 @@ import { Autoplay, Navigation, Pagination, A11y } from "swiper";
 
 import "swiper/css";
 import NewsCard from "./NewsCard";
-import { css } from "@emotion/react";
-import ScaleLoader from "react-spinners/ScaleLoader";
 import { getImage } from "gatsby-plugin-image";
 import { useNewsQuery } from "../hooks/useNewsQuery";
 
 const News = () => {
   // Can be a string as well. Need to ensure each key-value pair ends with ;
-  const override = css`
-    display: block;
-    margin: 0 auto;
-    border-color: red;
-  `;
 
   const { allStrapiBlog } = useNewsQuery();
   const blogs = allStrapiBlog?.nodes;
 
   return (
     <section className="w-full bg-white py-20">
-      <div className="container mx-auto px-20 ">
+      <div className="max-w-5xl mx-auto   ">
         <h2 className="text-neutral-700 text-3xl font-semibold text-center">
           Important News
         </h2>

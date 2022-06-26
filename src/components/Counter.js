@@ -8,7 +8,7 @@ import TaxIcon from "../images/icons/tax.svg";
 const Counter = () => {
   return (
     <section className="bg-secondary text-white ">
-      <div className="grid grid-cols-4 container mx-auto px-20 py-20">
+      <div className="grid md:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto   py-20">
         <CounterBlock
           target={172}
           title="Tax Services"

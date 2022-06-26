@@ -9,7 +9,7 @@ const CounterBlock = ({ target, title, duration, icon, symbol }) => {
   });
 
   return (
-    <div className=" text-center flex flex-col items-center" ref={ref}>
+    <div className=" text-center flex flex-col items-center my-10" ref={ref}>
       <div className="w-16 mb-5">
         <img src={icon} alt="" />
       </div>

@@ -42,7 +42,7 @@ const Faq = () => {
 
   return (
     <section className="w-full py-20 bg-white ">
-      <div className="px-20 container mx-auto flex">
+      <div className="  max-w-5xl mx-auto flex">
         <div className="w-1/3">
           <h2 className="text-neutral-700 text-3xl font-semibold mb-10">
             Frequent Asked Questions

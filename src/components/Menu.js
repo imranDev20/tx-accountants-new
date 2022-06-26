@@ -12,7 +12,7 @@ const Menu = () => {
       {menuItems.map((menuItem) => (
         <Link
           activeClassName="text-secondary-light"
-          className="mx-4 text-white"
+          className="mx-4 text-white hover:text-secondary-light transition-colors"
           key={menuItem.strapi_id}
           to={menuItem.slug === "home" ? `/` : `/${menuItem.slug}`}
         >

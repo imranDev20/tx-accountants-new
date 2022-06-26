@@ -35,7 +35,7 @@ const Companies = () => {
 
   return (
     <section className="w-full bg-white">
-      <div className="py-5 max-w-4xl mx-auto px-20 grid grid-cols-4 gap-10">
+      <div className="py-5 max-w-4xl mx-auto   grid grid-cols-4 gap-10">
         {companies?.map((company) => {
           const image = getImage(company?.companyImage?.localFile);
 

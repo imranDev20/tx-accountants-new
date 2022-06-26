@@ -36,7 +36,7 @@ const WhyUs = () => {
           <div className="mt-10">
             {whyUsPoints.map((point, index) => {
               return (
-                <div key={index} className="flex items-center my-5 font-light">
+                <div key={index} className="flex items-center my-5 ">
                   <img
                     className="w-6 mr-3"
                     src={point?.stackIcon?.localFile?.publicURL}

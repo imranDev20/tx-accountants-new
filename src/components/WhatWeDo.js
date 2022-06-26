@@ -67,7 +67,7 @@ const WhatWeDo = () => {
 
   return (
     <section className="bg-neutral-100 w-full py-14">
-      <div className="container mx-auto px-20">
+      <div className="max-w-5xl mx-auto  ">
         <motion.h2
           animate={animationHeading}
           ref={ref}

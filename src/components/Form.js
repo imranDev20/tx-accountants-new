@@ -1,8 +1,9 @@
 import React from "react";
 import { useForm, ValidationError } from "@formspree/react";
-import { FaCheckCircle } from "react-icons/fa";
 import { FiSend } from "react-icons/fi";
 import { NormalButton } from "./Button";
+import { toast } from "react-toastify";
+import LoadingSpinner from "./LoadingSpinner";
 
 const Form = ({ isModal }) => {
   const [state, handleSubmit] = useForm("xoqrwnop");
@@ -46,14 +47,27 @@ const Form = ({ isModal }) => {
           type="submit"
           disabled={state.submitting}
         >
-          Submit <FiSend className="ml-2 text-sm" />
+          Submit
+          {state.submitting ? (
+            <LoadingSpinner
+              className={`w-5 h-5 ml-2 text-gray-200/50 animate-spin fill-white `}
+            />
+          ) : (
+            <FiSend className={`ml-2 text-sm `} />
+          )}
         </NormalButton>
       </form>
-      {state.succeeded && (
-        <p>
-          <FaCheckCircle /> Email sent successfully
-        </p>
-      )}
+      {state.succeeded &&
+        toast.success("Request received successfully!", {
+          position: "bottom-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          toastId: "success1",
+        })}
     </div>
   );
 };

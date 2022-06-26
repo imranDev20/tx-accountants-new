@@ -69,7 +69,7 @@ const OurServices = () => {
     <Layout>
       <Seo title="Fixed Fee Pricing" />
       <section className="bg-background py-20">
-        <div className="container mx-auto px-20">
+        <div className="max-w-5xl mx-auto  ">
           <motion.h2
             animate={animationHeading}
             ref={ref}
