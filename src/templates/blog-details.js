@@ -52,13 +52,12 @@ const BlogDetails = ({ data }) => {
             </span>
           </div>
 
-          <div>
-            <GatsbyImage
-              className="my-5 w-full object-cover rounded"
-              image={blogImage}
-              alt={title}
-            />
-          </div>
+          <GatsbyImage
+            onClick={console.log("Clicked")}
+            className="my-5 w-full object-cover rounded"
+            image={blogImage}
+            alt={title}
+          />
 
           <div className="text-neutral-700">
             <h1 className="text-3xl my-2 leading-snug font-medium">{title}</h1>
