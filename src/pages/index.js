@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import About from "../components/About";
+import AppointmentModal from "../components/AppointmentModal";
 import Contact from "../components/Contact";
 import Counter from "../components/Counter";
 import Faq from "../components/Faq";
@@ -13,10 +14,12 @@ import WhatWeDo from "../components/WhatWeDo";
 import WhyUs from "../components/WhyUs";
 
 const IndexPage = () => {
+  const [showModal, setShowModal] = useState(false);
+
   return (
     <Layout>
       <Seo title="Home" />
-      <Hero />
+      <Hero showModal={showModal} setShowModal={setShowModal} />
       <About />
       <WhatWeDo />
       <WhyUs />
@@ -26,6 +29,7 @@ const IndexPage = () => {
       <Contact />
       <Testimonial />
       <Faq />
+      <AppointmentModal showModal={showModal} setShowModal={setShowModal} />
     </Layout>
   );
 };

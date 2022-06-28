@@ -12,7 +12,7 @@ const Checkout = ({ priceId, isSubscription }) => {
     setLoading(true);
 
     const stripe = await getStripe();
-    const { error } = await stripe.redirectToCheckout({
+    const { error } = await stripe?.redirectToCheckout({
       mode: `${isSubscription ? `subscription` : `payment`}`,
       lineItems: [{ price: String(priceId), quantity: 1 }],
       successUrl: `http://localhost:8000/post-stripe/`,
@@ -34,7 +34,7 @@ const Checkout = ({ priceId, isSubscription }) => {
       Pay Now{" "}
       {loading && (
         <LoadingSpinner
-          className={`w-5 h-5 ml-2 text-primary/30 animate-spin fill-primary`}
+          className={`w-5 h-5 ml-2 text-gray-200/50 animate-spin fill-white`}
         />
       )}
     </button>

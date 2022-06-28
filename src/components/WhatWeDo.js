@@ -78,7 +78,7 @@ const WhatWeDo = () => {
         <motion.p
           animate={animationParagraph}
           ref={ref}
-          className="text-neutral-600 mt-5 mx-auto text-center leading-loose"
+          className="text-neutral-600 mt-5 mx-auto text-justify  leading-normal"
         >
           We are working together with entrepreneurs and private individuals
           achieve their goal through our personalized services and cutting-edge
@@ -93,7 +93,7 @@ const WhatWeDo = () => {
           unexpected bill.
         </motion.p>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10 my-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 my-10">
           {servicesData.map((service, i) => (
             <WorkCard
               key={service.strapi_id}

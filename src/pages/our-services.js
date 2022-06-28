@@ -68,7 +68,10 @@ const OurServices = () => {
   return (
     <Layout>
       <Seo title="Fixed Fee Pricing" />
-      <section className="bg-background py-20">
+      <section className="bg-background pb-20">
+        <h1 className="bg-secondary text-center text-white py-5 text-3xl font-medium mb-10 relative z-10">
+          Our Services
+        </h1>
         <div className="max-w-5xl mx-auto  ">
           <motion.h2
             animate={animationHeading}
@@ -77,7 +80,7 @@ const OurServices = () => {
           >
             What we do
           </motion.h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-10 my-10">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 my-10">
             {servicesData.map((service, i) => (
               <WorkCard
                 key={service.strapi_id}

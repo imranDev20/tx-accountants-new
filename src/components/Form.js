@@ -43,9 +43,12 @@ const Form = ({ isModal }) => {
           errors={state.errors}
         />
         <NormalButton
-          className={`text-white py-2 w-1/2 mx-auto flex items-center justify-center`}
           type="submit"
           disabled={state.submitting}
+          className={`text-white py-2 w-1/2 mx-auto flex items-center justify-center ${
+            state?.submitting &&
+            "!cursor-wait !pointer-events-none bg-secondary/70"
+          }`}
         >
           Submit
           {state.submitting ? (
@@ -57,17 +60,21 @@ const Form = ({ isModal }) => {
           )}
         </NormalButton>
       </form>
-      {state.succeeded &&
-        toast.success("Request received successfully!", {
-          position: "bottom-center",
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-          toastId: "success1",
-        })}
+
+      {/* Keeping the unexpected message hidden */}
+      <p className="scale-0 hidden">
+        {state.succeeded &&
+          toast.success("Request received successfully!", {
+            position: "bottom-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            toastId: "Sent",
+          })}
+      </p>
     </div>
   );
 };

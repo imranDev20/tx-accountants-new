@@ -1,13 +1,12 @@
-import { graphql, Link, useStaticQuery } from "gatsby";
+import { graphql, Link } from "gatsby";
 import { GatsbyImage, getImage } from "gatsby-plugin-image";
-import React, { useEffect } from "react";
+import React from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { FaUserCircle, FaClock } from "react-icons/fa";
 import { useNewsQuery } from "../hooks/useNewsQuery";
 import NewsCard from "../components/NewsCard";
-import ReactMarkdown from "react-markdown";
-import { Disqus, CommentCount } from "gatsby-plugin-disqus";
+import { Disqus } from "gatsby-plugin-disqus";
 
 const BlogDetails = ({ data }) => {
   const { title, publishedAt, content, slug, strapi_id } = data?.strapiBlog;

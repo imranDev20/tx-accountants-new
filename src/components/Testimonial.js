@@ -45,7 +45,7 @@ const Testimonial = () => {
         <h2 className="text-neutral-700 text-3xl font-semibold text-center">
           Testimonials
         </h2>
-        <p className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-loose text-center">
+        <p className="text-neutral-600 max-w-3xl mx-auto mt-5  leading-normal text-center">
           Cray woke kitsch, hammock vaporware 8-bit prism craft beer health goth
           four dollar toast. Lyft before they sold out pin gluten-free edison
           bulb squid tbh vinegar actually readymade.

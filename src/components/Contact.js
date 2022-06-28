@@ -8,7 +8,7 @@ const Contact = () => {
         <h2 className=" text-center text-3xl font-semibold mb-5 text-white">
           Request a Callback
         </h2>
-        <p className="text-white text-lg text-center max-w-3xl mx-auto my-5 leading-loose">
+        <p className="text-white text-lg text-center max-w-3xl mx-auto my-5  leading-normal">
           To schedule a free appointment with one of our Accountants, please
           fill in your contact details.
         </p>

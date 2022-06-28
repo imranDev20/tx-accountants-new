@@ -77,7 +77,7 @@ const About = () => {
         <motion.p
           ref={ref}
           animate={animationParagraph}
-          className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-loose"
+          className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-normal"
         >
           {aboutData?.aboutHeader?.sectionDetails}
         </motion.p>

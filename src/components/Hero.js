@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import AnimatedText from "./AnimatedText";
 import "../styles/animation.css";
 
-const Hero = () => {
+const Hero = ({ showModal, setShowModal }) => {
   const data = useStaticQuery(graphql`
     query HeroQuery {
       strapiPage(title: { eq: "Home" }) {
@@ -85,7 +85,10 @@ const Hero = () => {
           initial={{ y: 70, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
         >
-          <NormalButton className="px-5 py-3 mt-5">
+          <NormalButton
+            onClick={() => setShowModal(!showModal)}
+            className="px-5 py-3 mt-5"
+          >
             {heroData.heroButton.label}
           </NormalButton>
         </motion.div>

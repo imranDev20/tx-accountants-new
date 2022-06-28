@@ -15,7 +15,7 @@ const PricingPlan = () => {
           <h2 className="text-3xl text-neutral-700 mb-3 font-semibold">
             We Are Faster
           </h2>
-          <p className="text-neutral-600 leading-loose">
+          <p className="text-neutral-600 text-justify  leading-normal">
             We have designed our services to easily fit within a busy
             executive's lifestyle through our cloud-based accounting software.
             We understand the importance of deadlines and work quickly to ensure
@@ -29,7 +29,7 @@ const PricingPlan = () => {
           <h2 className="text-3xl text-neutral-700 mb-3 font-semibold">
             We Are Smarter
           </h2>
-          <p className="text-neutral-600 leading-loose">
+          <p className="text-neutral-600 text-justify  leading-normal">
             We offer every tax and accounting service a growing business needs
             to succeed, including help with start-up business plans, day-to-day
             running of accounts, payroll, VAT and taxation services and much

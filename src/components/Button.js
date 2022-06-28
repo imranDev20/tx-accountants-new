@@ -58,11 +58,12 @@ export const LinkButton = ({ to, className, children }) => {
   );
 };
 
-export const NormalButton = ({ children, className }) => {
+export const NormalButton = ({ children, className, onClick }) => {
   return (
     <motion.button
+      onClick={onClick}
       initial={{ scale: 1 }}
-      whileHover={{ scale: 1.05, backgroundColor: "#5933AA" }}
+      whileHover={{ scale: 1.05 }}
       className={`bg-secondary rounded-full ${className}`}
     >
       {children}

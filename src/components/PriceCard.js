@@ -60,7 +60,7 @@ const PriceCard = ({
           ))}
         </div>
         <button
-          className="bg-yellow-500 text-primary hover:bg-white text-sm tracking-[1.5px] transition-colors rounded-full px-5 py-2 my-3 w-full max-w-[150px] mx-auto flex justify-center uppercase font-medium"
+          className="bg-yellow-500 text-primary hover:bg-white text-sm tracking-[1.5px] transition-colors rounded-full px-5 py-2 my-3 w-full max-w-[150px] mx-auto flex justify-center uppercase font-medium mt-5"
           onClick={handleClick}
         >
           Buy Now
