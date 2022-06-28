@@ -1,4 +1,10 @@
 import React from "react";
+import VisaIcon from "../images/icons/visa.svg";
+import MasterCardIcon from "../images/icons/mastercard.svg";
+import MaestroCardIcon from "../images/icons/maestrocard.svg";
+import AmericanExpressIcon from "../images/icons/american-express.svg";
+import DiscoverIcon from "../images/icons/discover.svg";
+import UnionIcon from "../images/icons/union.svg";
 
 const PriceCard = ({
   title,
@@ -29,7 +35,7 @@ const PriceCard = ({
       <div className="text-center bg-secondary-dark rounded-t-lg">
         <h3 className="text-2xl py-3 font-medium text-white">{title}</h3>
       </div>
-      <div className="text-center text-secondary my-3">
+      <div className="text-center text-secondary-dark my-3">
         <h4 className="font-semibold text-xl">Tax Returns</h4>
         <p className="font-medium text-xl">
           From £{priceFixed} or £{pricePM} P/M
@@ -46,7 +52,8 @@ const PriceCard = ({
           </p>
         ))}
       </div>
-      <div className="bg-secondary-dark rounded-b-lg px-4 py-3 text-white break-words">
+
+      <div className="bg-secondary-dark rounded-b-lg px-4 py-5 text-white break-words">
         <h5 className="font-semibold mb-1">IDEAL FOR:</h5>
         <div>
           {ideals.map((ideal) => (
@@ -60,11 +67,31 @@ const PriceCard = ({
           ))}
         </div>
         <button
-          className="bg-yellow-500 text-primary hover:bg-white text-sm tracking-[1.5px] transition-colors rounded-full px-5 py-2 my-3 w-full max-w-[150px] mx-auto flex justify-center uppercase font-medium mt-5"
+          className="bg-yellow-500 text-primary hover:bg-white text-sm tracking-[1.5px] transition-colors rounded-full px-5 py-2 my-3 w-full max-w-[150px] mx-auto flex justify-center uppercase font-bold mt-5"
           onClick={handleClick}
         >
           Buy Now
         </button>
+        <div className="grid grid-cols-6 max-w-[200px] mx-auto gap-1 mt-5">
+          <div className="bg-white rounded-sm p-1 flex items-center">
+            <img src={VisaIcon} alt="" />
+          </div>
+          <div className="bg-white rounded-sm p-1 flex items-center">
+            <img src={MasterCardIcon} alt="" />
+          </div>
+          <div className="bg-white rounded-sm p-1 flex items-center">
+            <img src={MaestroCardIcon} alt="" />
+          </div>
+          <div className="rounded-sm flex items-center">
+            <img src={AmericanExpressIcon} alt="" />
+          </div>
+          <div className="bg-white rounded-sm p-1 flex items-center">
+            <img src={DiscoverIcon} alt="" />
+          </div>
+          <div className="bg-white rounded-sm p-1 flex items-center">
+            <img src={UnionIcon} alt="" />
+          </div>
+        </div>
       </div>
     </div>
   );

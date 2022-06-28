@@ -14,7 +14,7 @@ const News = () => {
   const blogs = allStrapiBlog?.nodes;
 
   return (
-    <section className="w-full bg-white py-20">
+    <section className="w-full bg-white py-20 px-10">
       <div className="max-w-5xl mx-auto   ">
         <h2 className="text-neutral-700 text-3xl font-semibold text-center">
           Important News

@@ -41,9 +41,9 @@ const Faq = () => {
   ];
 
   return (
-    <section className="w-full py-20 bg-white ">
-      <div className="  max-w-5xl mx-auto flex">
-        <div className="w-1/3">
+    <section className="w-full py-20 bg-white px-10">
+      <div className="max-w-5xl mx-auto flex xl:flex-row flex-col items-center xl:items-start">
+        <div className="w-full xl:w-1/3 mb-7">
           <h2 className="text-neutral-700 text-3xl font-semibold mb-10">
             Frequent Asked Questions
           </h2>
@@ -53,7 +53,7 @@ const Faq = () => {
             similique?
           </p>
         </div>
-        <Accordion className="accordion w-2/3">
+        <Accordion className="accordion w-full  xl:w-2/3">
           {faqs.map((faq) => (
             <AccordionItem key={faq.id}>
               <AccordionItemHeading>

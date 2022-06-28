@@ -27,7 +27,7 @@ const NewsPage = () => {
   return (
     <Layout>
       <Seo title="News" />
-      <section className="mx-auto max-w-5xl   py-5">
+      <section className="mx-auto max-w-5xl py-5 px-10">
         {blogs.map((blog) => {
           // Simplyfying
           const blogImage = getImage(blog?.image[0]?.localFile);

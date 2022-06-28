@@ -8,11 +8,11 @@ const Menu = () => {
   const menuItems = data.allStrapiPage.nodes;
 
   return (
-    <div>
+    <div className="flex flex-col xl:flex-row items-center">
       {menuItems.map((menuItem) => (
         <Link
           activeClassName="text-secondary-light"
-          className="mx-4 text-white hover:text-secondary-light transition-colors"
+          className="mx-4 text-white hover:text-secondary-light transition-colors my-3 xl:my-0"
           key={menuItem.strapi_id}
           to={menuItem.slug === "home" ? `/` : `/${menuItem.slug}`}
         >

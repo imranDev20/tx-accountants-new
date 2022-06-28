@@ -21,7 +21,6 @@ const Companies = () => {
                   url
                 }
                 ext
-
                 alternativeText
               }
             }
@@ -35,22 +34,25 @@ const Companies = () => {
 
   return (
     <section className="w-full bg-white">
-      <div className="py-5 max-w-xl mx-auto flex items-center justify-center">
+      <div className="py-5 max-w-xl mx-auto grid grid-cols-2 md:grid-cols-4 ">
         {companies?.map((company) => {
           const image = getImage(company?.companyImage?.localFile);
-          console.log(company.tallLength);
 
           return (
             <a
               key={company?.strapi_id}
               href={company?.companyURL}
-              className="max-w-[100px] mx-5"
+              target="_blank"
+              className="max-w-[100px] mx-auto md:mx-5 flex items-center"
             >
-              <GatsbyImage
-                image={image}
-                className={company?.tallLength && "h-[10px]"}
-                imgClassName={`w-full  ${company?.tallLength}`}
-              />
+              {company?.companyImage?.ext === ".svg" ? (
+                <img src={company?.companyImage?.localFile?.publicURL} alt="" />
+              ) : (
+                <GatsbyImage
+                  image={image}
+                  alt={company?.companyImage?.alternativeText}
+                />
+              )}
             </a>
           );
         })}

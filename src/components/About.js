@@ -65,7 +65,7 @@ const About = () => {
   }
 
   return (
-    <section className="mt-[100vh] bg-white w-full border-t-4 border-secondary py-[70px]">
+    <section className="mt-[calc(100vh-93px)] bg-white w-full border-t-4 border-secondary py-[70px] px-10">
       <div className="max-w-5xl mx-auto text-center">
         <motion.h2
           ref={ref}

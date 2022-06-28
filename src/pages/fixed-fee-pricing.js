@@ -19,7 +19,7 @@ const FixedFeePricingPage = () => {
           Affordable Price
         </h1>
         <div className="max-w-5xl mx-auto relative z-30">
-          <div className="flex justify-center items-start">
+          <div className="flex xl:flex-row flex-col justify-center items-start">
             <PriceCard
               showModal={showModal}
               setShowModal={setShowModal}

@@ -66,7 +66,7 @@ const WhatWeDo = () => {
   const servicesData = data.strapiPage.blocks[2].servicesIconStack;
 
   return (
-    <section className="bg-neutral-100 w-full py-14">
+    <section className="bg-neutral-100 w-full py-14 px-10">
       <div className="max-w-5xl mx-auto  ">
         <motion.h2
           animate={animationHeading}

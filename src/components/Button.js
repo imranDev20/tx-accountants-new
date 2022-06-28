@@ -6,7 +6,7 @@ import { useInView } from "react-intersection-observer";
 export const AnchorButton = ({ href, className, children, icon }) => {
   return (
     <a
-      className={`${className} bg-secondary text-white px-5 py-2 rounded-full ml-5 flex items-center`}
+      className={`${className} bg-secondary text-white px-5 py-2 rounded-full  flex items-center`}
       href={href}
     >
       <span className="mr-2">{icon}</span> {children}

@@ -67,12 +67,12 @@ const BlogDetails = ({ data }) => {
         </div>
       </section>
 
-      <section className="max-w-5xl mx-auto   my-20">
+      <section className="max-w-5xl mx-auto my-20 px-10">
         {/* <CommentCount config={disqusConfig} placeholder={"..."} /> */}
         <Disqus config={disqusConfig} />
       </section>
 
-      <section className="max-w-5xl mx-auto   mb-20 py-5">
+      <section className="max-w-5xl mx-auto mb-20 py-5 px-10">
         <div className="mb-5 flex items-center justify-between">
           <h2 className="text-neutral-700 text-2xl font-medium">
             Recent Posts

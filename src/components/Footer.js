@@ -9,7 +9,7 @@ const Footer = () => {
   const menuItems = data.allStrapiPage.nodes;
 
   return (
-    <footer className="bg-primary text-white py-20">
+    <footer className="bg-primary text-white py-20 px-10">
       <div className="max-w-5xl   mx-auto grid-cols-1 grid md:grid-cols-2 lg:grid-cols-3 gap-10">
         <div className="pr-10">
           <Logo />

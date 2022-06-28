@@ -5,9 +5,17 @@ import { FaPhoneAlt } from "react-icons/fa";
 
 const Navigation = ({ open }) => {
   return (
-    <nav className="xl:static xl:flex items-center transition-all duration-200 fixed">
+    <nav
+      className={`xl:static flex flex-col justify-center xl:flex-row items-center  duration-200 fixed top-1/2 ${
+        open ? "left-1/2" : " -left-full"
+      } -translate-x-1/2 xl:translate-x-0 -translate-y-1/2 xl:translate-y-0 bg-primary xl:bg-transparent w-full xl:w-auto h-screen xl:h-auto transition-all`}
+    >
       <Menu />
-      <AnchorButton icon={<FaPhoneAlt />} href="tel:321831091">
+      <AnchorButton
+        className={`ml-0 xl:ml-5`}
+        icon={<FaPhoneAlt />}
+        href="tel:321831091"
+      >
         Call Us
       </AnchorButton>
     </nav>

@@ -9,7 +9,7 @@ const AboutPage = () => {
   return (
     <Layout>
       <Seo title="About" />
-      <section className="py-5 text-white bg-[url('https://images.unsplash.com/photo-1568658176307-bfbd2873abda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-center bg-fixed bg-no-repeat bg-cover relative before:content-[''] before:absolute before:left-0 before:right-0 before:bottom-0 before:top-0 before:w-full before:h-full before:bg-primary/80">
+      <section className="py-5 text-white bg-[url('https://images.unsplash.com/photo-1568658176307-bfbd2873abda?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')] bg-center bg-fixed bg-no-repeat bg-cover relative before:content-[''] before:absolute before:left-0 before:right-0 before:bottom-0 before:top-0 before:w-full before:h-full before:bg-primary/80 px-10">
         <div className="max-w-5xl mx-auto z-20 relative">
           <div className="mb-5">
             <h2 className="text-2xl mb-4 font-semibold ">Who We Are</h2>
@@ -56,7 +56,7 @@ const AboutPage = () => {
         </div>
       </section>
 
-      <section>
+      <section className="px-10">
         <div className="max-w-4xl mx-auto mt-16">
           <div className="flex">
             <div className="w-1/3">

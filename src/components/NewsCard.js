@@ -18,8 +18,8 @@ const NewsCard = ({ title, image, slug, isRecent }) => {
               ? title.length > 42
                 ? title.substring(0, 42) + `...`
                 : title
-              : title.length > 55
-              ? title.substring(0, 55) + `...`
+              : title.length > 42
+              ? title.substring(0, 42) + `...`
               : title}
           </h4>
         </Link>
