@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import WorkCard from "./WorkCard";
 import { LinkButton } from "./Button";
 import { useStaticQuery, graphql } from "gatsby";

@@ -30,7 +30,7 @@ const BlogDetails = ({ data }) => {
   return (
     <Layout>
       <Seo title={title} />
-      <section className="max-w-5xl mx-auto px-10 lg:  py-6">
+      <section className="max-w-5xl mx-auto px-5 lg:  py-6">
         <div className="my-6">
           <Link
             className="inline-block text-neutral-700 hover:text-secondary"

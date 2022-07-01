@@ -31,7 +31,7 @@ const PriceCard = ({
   };
 
   return (
-    <div className="shadow-lg bg-white rounded-lg max-w-[31%] mx-3">
+    <div className="shadow-lg bg-white rounded-lg w-3/4 md:w-1/2 xl:w-[31%] mx-3 mb-10">
       <div className="text-center bg-secondary-dark rounded-t-lg">
         <h3 className="text-2xl py-3 font-medium text-white">{title}</h3>
       </div>

@@ -58,15 +58,15 @@ const AboutPage = () => {
 
       <section className="px-10">
         <div className="max-w-4xl mx-auto mt-16">
-          <div className="flex">
-            <div className="w-1/3">
+          <div className="flex xl:flex-row flex-col mb-10">
+            <div className="xl:w-1/3 w-full mb-5">
               <img
                 className="w-full h-full max-w-[145px]"
                 src={HandGear}
                 alt=""
               />
             </div>
-            <div className="w-2/3">
+            <div className="xl:w-2/3 w-full">
               <h3 className="text-3xl text-secondary-dark mb-2 font-medium">
                 Our Vision
               </h3>
@@ -81,15 +81,15 @@ const AboutPage = () => {
             </div>
           </div>
 
-          <div className="my-8 flex items-center">
-            <div className="w-1/3">
+          <div className="flex xl:flex-row flex-col">
+            <div className="xl:w-1/3 w-full mb-5">
               <img
                 className="w-full h-full max-w-[145px]"
                 src={LaptopGear}
                 alt=""
               />
             </div>
-            <div className="w-2/3">
+            <div className="xl:w-2/3 w-full">
               <h3 className="text-3xl text-secondary-dark mb-2 font-medium">
                 Technology
               </h3>
