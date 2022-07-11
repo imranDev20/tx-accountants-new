@@ -19,6 +19,7 @@ const WhyUs = () => {
                   publicURL
                 }
               }
+              strapi_id
             }
           }
         }
@@ -26,7 +27,7 @@ const WhyUs = () => {
     }
   `);
 
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: false });
   const animateTitle = useAnimation();
 
   if (inView) {
@@ -60,7 +61,13 @@ const WhyUs = () => {
           </motion.h2>
           <div className="mt-10">
             {whyUsPoints.map((point, index) => {
-              return <WhyUsPoints point={point} index={index} />;
+              return (
+                <WhyUsPoints
+                  key={point?.strapi_id}
+                  point={point}
+                  index={index}
+                />
+              );
             })}
           </div>
         </div>

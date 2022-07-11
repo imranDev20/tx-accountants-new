@@ -16,7 +16,7 @@ export const AnchorButton = ({ href, className, children, icon }) => {
 
 export const LinkButton = ({ to, className, children }) => {
   const animationButton = useAnimation();
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false });
 
   if (inView) {
     animationButton.start({

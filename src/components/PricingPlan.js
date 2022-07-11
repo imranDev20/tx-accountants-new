@@ -13,7 +13,7 @@ const PricingPlan = () => {
 
   const [ref, inView] = useInView({
     threshold: 0.1,
-    triggerOnce: true,
+    triggerOnce: false,
   });
 
   const animationTitle = useAnimation();
@@ -96,10 +96,10 @@ const PricingPlan = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             {prices.map((price) => (
               <PricingCard
-                key={price.id}
-                name={price.name}
-                priceFixed={price.priceFixed}
-                pricePM={price.pricePM}
+                key={price?.id}
+                name={price?.name}
+                priceFixed={price?.priceFixed}
+                pricePM={price?.pricePM}
               />
             ))}
           </div>

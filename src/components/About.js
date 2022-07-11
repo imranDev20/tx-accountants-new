@@ -27,7 +27,7 @@ const About = () => {
   `);
   const aboutData = data?.strapiPage?.blocks[1];
 
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false });
 
   const animationParagraph = useAnimation();
   const animationHeading = useAnimation();

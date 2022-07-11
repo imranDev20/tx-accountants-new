@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 import { useAnimation } from "framer-motion";
 
 const WhatWeDo = () => {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false });
   const animationParagraph = useAnimation();
   const animationHeading = useAnimation();
   const animationButton = useAnimation();

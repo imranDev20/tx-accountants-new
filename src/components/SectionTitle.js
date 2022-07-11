@@ -4,7 +4,7 @@ import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 
 const SectionTitle = ({ children, className }) => {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false });
   const animationHeading = useAnimation();
 
   return (

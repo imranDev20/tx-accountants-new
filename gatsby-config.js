@@ -107,7 +107,7 @@ module.exports = {
   trailingSlash: "never",
   siteMetadata: {
     title: `Tx Accountants`,
-    siteUrl: `http://localhost:8000/`,
+    siteUrl: `https://txaccountants.co.uk`,
     author: `@imrankabir97`,
   },
   plugins: [
