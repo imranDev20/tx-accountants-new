@@ -2,6 +2,8 @@ import React from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination, A11y } from "swiper";
 import TestimonialCard from "./TestimonialCard";
+import SectionTitle from "./SectionTitle";
+import SectionText from "./SectionText";
 
 const Testimonial = () => {
   const reviews = [
@@ -42,14 +44,14 @@ const Testimonial = () => {
   return (
     <section className="w-full bg-neutral-100 py-20">
       <div className="max-w-5xl mx-auto px-10">
-        <h2 className="text-neutral-700 text-3xl font-semibold text-center">
+        <SectionTitle className="text-neutral-700 text-3xl font-semibold text-center">
           Testimonials
-        </h2>
-        <p className="text-neutral-600 max-w-3xl mx-auto mt-5  leading-normal text-center">
+        </SectionTitle>
+        <SectionText className="text-neutral-600 max-w-3xl mx-auto mt-5  leading-normal text-center">
           Cray woke kitsch, hammock vaporware 8-bit prism craft beer health goth
           four dollar toast. Lyft before they sold out pin gluten-free edison
           bulb squid tbh vinegar actually readymade.
-        </p>
+        </SectionText>
         <Swiper
           modules={[Navigation, Pagination, A11y, Autoplay]}
           spaceBetween={30}

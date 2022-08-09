@@ -34,9 +34,6 @@ const NewsCard = ({ title, image, slug, isRecent }) => {
               <FaRegEnvelope className="mr-2" /> 3
             </span>
           </div>
-          <span className="flex items-center text-sm">
-            2 <FaHeart className="ml-2" />
-          </span>
         </div>
       </div>
     </div>

@@ -4,6 +4,8 @@ import WhyUsPoints from "./WhyUsPoints";
 import { motion } from "framer-motion";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { getImage } from "gatsby-plugin-image";
+import { BgImage } from "gbimage-bridge";
 
 const WhyUs = () => {
   const data = useStaticQuery(graphql`
@@ -21,13 +23,20 @@ const WhyUs = () => {
               }
               strapi_id
             }
+            whyUsBg {
+              localFile {
+                childImageSharp {
+                  gatsbyImageData
+                }
+              }
+            }
           }
         }
       }
     }
   `);
 
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: false });
+  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
   const animateTitle = useAnimation();
 
   if (inView) {
@@ -49,7 +58,12 @@ const WhyUs = () => {
   return (
     <section className="bg-primary">
       <div className="w-full mx-auto flex flex-col-reverse lg:flex-row  text-white">
-        <div className="w-full h-screen max-h-[610px] relative bg-cover bg-no-repeat lg:w-1/2 bg-fixed bg-[top_right] bg-[url('https://images.unsplash.com/photo-1556761175-5973dc0f32e7?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1632&q=80')] before:content-[''] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:w-full before:h-full before:bg-primary/60"></div>
+        <div className="w-full h-screen max-h-[610px] relative lg:w-1/2 before:content-[''] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:w-full before:h-full before:bg-primary/60 before:z-10">
+          <BgImage
+            className="why-us-bg"
+            image={getImage(data?.strapiPage?.blocks[4]?.whyUsBg?.localFile)}
+          ></BgImage>
+        </div>
 
         <div className="w-full pl-10 pr-10 lg:w-1/2 lg:max-w-xl py-20">
           <motion.h2

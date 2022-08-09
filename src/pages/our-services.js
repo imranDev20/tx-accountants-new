@@ -9,7 +9,7 @@ import { LinkButton } from "../components/Button";
 import Seo from "../components/Seo";
 
 const OurServices = () => {
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const animationParagraph = useAnimation();
   const animationHeading = useAnimation();
   const animationButton = useAnimation();

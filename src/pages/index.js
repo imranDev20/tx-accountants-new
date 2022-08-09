@@ -1,17 +1,22 @@
 import React, { useState } from "react";
-import About from "../components/About";
-import AppointmentModal from "../components/AppointmentModal";
-import Contact from "../components/Contact";
-import Counter from "../components/Counter";
-import Faq from "../components/Faq";
+import loadable from "@loadable/component";
+
 import Hero from "../components/Hero";
 import Layout from "../components/Layout";
-import News from "../components/News";
-import PricingPlan from "../components/PricingPlan";
 import Seo from "../components/Seo";
-import Testimonial from "../components/Testimonial";
-import WhatWeDo from "../components/WhatWeDo";
-import WhyUs from "../components/WhyUs";
+
+const About = loadable(() => import("../components/About"));
+const AppointmentModal = loadable(() =>
+  import("../components/AppointmentModal")
+);
+const Contact = loadable(() => import("../components/Contact"));
+const Counter = loadable(() => import("../components/Counter"));
+const Faq = loadable(() => import("../components/Faq"));
+const News = loadable(() => import("../components/News"));
+const WhyUs = loadable(() => import("../components/WhyUs"));
+const WhatWeDo = loadable(() => import("../components/WhatWeDo"));
+const Testimonial = loadable(() => import("../components/Testimonial"));
+const PricingPlan = loadable(() => import("../components/PricingPlan"));
 
 const IndexPage = () => {
   const [showModal, setShowModal] = useState(false);

@@ -4,7 +4,7 @@ import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const WorkCard = ({ name, icon, index }) => {
-  const { ref, inView } = useInView({ threshold: 0.5, triggerOnce: false });
+  const { ref, inView } = useInView({ threshold: 0.5, triggerOnce: true });
   const animateWorkCard = useAnimation();
 
   if (inView) {

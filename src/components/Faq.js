@@ -1,74 +1,60 @@
 import React from "react";
-import {
-  Accordion,
-  AccordionItem,
-  AccordionItemHeading,
-  AccordionItemButton,
-  AccordionItemPanel,
-} from "react-accessible-accordion";
+import Accordion from "./Accordion";
 
 import "../styles/accordion.css";
 
 // Demo styles, see 'Styles' section below for some notes on use.
 import "react-accessible-accordion/dist/fancy-example.css";
+import { graphql, useStaticQuery } from "gatsby";
 
 const Faq = () => {
-  const faqs = [
-    {
-      id: 1,
-      question: "What harsh truths do you prefer to ignore?",
-      answer:
-        "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
-    },
-    {
-      id: 2,
-      question: "What harsh truths do you prefer to ignore?",
-      answer:
-        "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
-    },
-    {
-      id: 3,
-      question: "What harsh truths do you prefer to ignore?",
-      answer:
-        "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
-    },
-    {
-      id: 4,
-      question: "What harsh truths do you prefer to ignore?",
-      answer:
-        "Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat occaecat ut occaecat consequat est minim minim esse tempor laborum consequat esse adipisicing eu reprehenderit enim.",
-    },
-  ];
+  const data = useStaticQuery(graphql`
+    query FaqQuery {
+      strapiPage(slug: { eq: "home" }) {
+        id
+        blocks {
+          ... on STRAPI__COMPONENT_BLOCKS_FAQ {
+            id
+            faqStack {
+              id
+              faqQues
+              faqAns
+            }
+            faqHeader {
+              sectionTitle
+              sectionDetails
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const faqs = data?.strapiPage?.blocks[6]?.faqStack;
+
+  const { sectionTitle, sectionDetails } =
+    data?.strapiPage?.blocks[6]?.faqHeader;
+
+  console.log(faqs);
 
   return (
     <section className="w-full py-20 bg-white px-10">
-      <div className="max-w-5xl mx-auto flex xl:flex-row flex-col items-center xl:items-start">
+      <div className="max-w-5xl mx-auto flex xl:flex-row flex-col items-center xl:items-start justify-between">
         <div className="w-full xl:w-1/3 mb-7">
-          <h2 className="text-neutral-700 text-3xl font-semibold mb-10">
-            Frequent Asked Questions
+          <h2 className="text-neutral-700 text-3xl font-semibold mb-5">
+            {sectionTitle}
           </h2>
-          <p className="text-neutral-600">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates
-            labore iste, earum ipsam enim sapiente eaque cumque deserunt fuga
-            similique?
-          </p>
+          <p className="text-neutral-600">{sectionDetails}</p>
         </div>
-        <Accordion className="accordion w-full  xl:w-2/3">
+        <div className="lg:w-1/2 w-full max-w-lg">
           {faqs.map((faq) => (
-            <AccordionItem key={faq.id}>
-              <AccordionItemHeading>
-                <AccordionItemButton>{faq.question}</AccordionItemButton>
-              </AccordionItemHeading>
-              <AccordionItemPanel>
-                <p>
-                  Exercitation in fugiat est ut ad ea cupidatat ut in cupidatat
-                  occaecat ut occaecat consequat est minim minim esse tempor
-                  laborum consequat esse adipisicing eu reprehenderit enim.
-                </p>
-              </AccordionItemPanel>
-            </AccordionItem>
+            <Accordion
+              key={faq.id}
+              question={faq?.faqQues}
+              answer={faq?.faqAns}
+            />
           ))}
-        </Accordion>
+        </div>
       </div>
     </section>
   );

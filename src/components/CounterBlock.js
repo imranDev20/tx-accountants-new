@@ -6,7 +6,7 @@ import { useAnimation, motion } from "framer-motion";
 const CounterBlock = ({ target, title, duration, icon, symbol }) => {
   const [ref, inView] = useInView({
     threshold: 0.2,
-    triggerOnce: false,
+    triggerOnce: true,
   });
 
   const animation = useAnimation();

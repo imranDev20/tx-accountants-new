@@ -1,10 +1,10 @@
 import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { LinkButton } from "./Button";
-import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import SectionTitle from "./SectionTitle";
+import SectionText from "./SectionText";
 
 const About = () => {
   const data = useStaticQuery(graphql`
@@ -27,7 +27,7 @@ const About = () => {
   `);
   const aboutData = data?.strapiPage?.blocks[1];
 
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: false });
+  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   const animationParagraph = useAnimation();
   const animationHeading = useAnimation();
@@ -66,13 +66,9 @@ const About = () => {
           animate={animationHeading}
           className={``}
         ></motion.h2> */}
-        <motion.p
-          ref={ref}
-          animate={animationParagraph}
-          className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-normal"
-        >
+        <SectionText className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-normal">
           {aboutData?.aboutHeader?.sectionDetails}
-        </motion.p>
+        </SectionText>
 
         <LinkButton
           className="justify-center items-center "

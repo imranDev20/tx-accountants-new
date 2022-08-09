@@ -36,18 +36,7 @@ const strapiConfig = {
         },
       },
     },
-    // {
-    //   singularName: `page`,
-    //   queryParams: {
-    //     populate: {
-    //       image: "*",
-    //       images: "*",
-    //       blocks: {
-    //         populate: "*",
-    //       },
-    //     },
-    //   },
-    // },
+
     {
       singularName: `page`,
       queryParams: {
@@ -80,7 +69,22 @@ const strapiConfig = {
               whyUsIconStack: {
                 populate: "*",
               },
+              whyUsBg: {
+                populate: "*",
+              },
               company: {
+                populate: "*",
+              },
+              contactHeader: {
+                populate: "*",
+              },
+              contactBg: {
+                populate: "*",
+              },
+              faqHeader: {
+                populate: "*",
+              },
+              faqStack: {
                 populate: "*",
               },
             },
@@ -110,11 +114,20 @@ module.exports = {
     siteUrl: `https://txaccountants.co.uk`,
     author: `@imrankabir97`,
   },
+
   plugins: [
     "gatsby-plugin-image",
+    {
+      resolve: "gatsby-background-image",
+      options: {
+        // add your own characters to escape, replacing the default ':/'
+        specialChars: "/:",
+      },
+    },
     "gatsby-plugin-react-helmet",
     "gatsby-plugin-sitemap",
     "gatsby-plugin-postcss",
+    "gatsby-plugin-loadable-components-ssr",
     {
       resolve: `gatsby-plugin-disqus`,
       options: {

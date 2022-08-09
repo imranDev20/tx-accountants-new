@@ -4,7 +4,7 @@ import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
 const WhyUsPoints = ({ point, index }) => {
-  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: false });
+  const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
   const animatePoints = useAnimation();
 
   if (inView) {

@@ -11,7 +11,7 @@ const PricingCard = ({ name, priceFixed, pricePM }) => {
     { id: 3, name: "Limited Company", priceFixed: 150, pricePM: 10 },
   ];
 
-  const { ref, inView } = useInView({ threshold: 0.5, triggerOnce: false });
+  const { ref, inView } = useInView({ threshold: 0.5, triggerOnce: true });
   const animatePricingCard = useAnimation();
 
   if (inView) {

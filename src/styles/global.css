@@ -10,3 +10,8 @@ body {
   z-index: 100000000 !important;
   height: 4px !important;
 }
+
+.why-us-bg {
+  height: 100%;
+  width: 100%;
+}
