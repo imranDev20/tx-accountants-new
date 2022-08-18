@@ -1,9 +1,12 @@
 import React from "react";
+import loadable from "@loadable/component";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { LinkButton } from "../components/Button";
 import HandGear from "../images/icons/hand-gear.svg";
 import LaptopGear from "../images/icons/laptop-gear.svg";
+const Faq = loadable(() => import("../components/Faq"));
+
 
 const AboutPage = () => {
   return (
@@ -106,6 +109,7 @@ const AboutPage = () => {
           </div>
         </div>
       </section>
+      <Faq />
     </Layout>
   );
 };

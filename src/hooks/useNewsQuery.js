@@ -8,6 +8,7 @@ export const useNewsQuery = () => {
           strapi_id
           title
           slug
+          excerpt
           publishedAt(formatString: "DD MMMM, YYYY")
           content {
             data {

@@ -1,6 +1,6 @@
-# Tx Accountants - London Based Accounting Farm (Ongoing Project)
+# Tx Accountants - London Based Accounting Farm
 
-## [Live site link](https://tx-accountants.netlify.app)
+## [Live site link](https://txaccountants.co.uk)
 
 ## About Partsyard
 

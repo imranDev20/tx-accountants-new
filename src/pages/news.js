@@ -31,7 +31,7 @@ const NewsPage = () => {
         {blogs.map((blog) => {
           // Simplyfying
           const blogImage = getImage(blog?.image[0]?.localFile);
-          const { title, slug } = blog;
+          const { title, slug, excerpt } = blog;
           const content = blog?.content?.data?.content;
 
           let disqusConfig = {
@@ -71,11 +71,17 @@ const NewsPage = () => {
                   </h4>
                 </Link>
 
-                <p
+                <p>
+                  {excerpt.length > 130
+                    ? excerpt.substr(0, 130) + "..."
+                    : excerpt}
+                </p>
+
+                {/* <p
                   dangerouslySetInnerHTML={{
                     __html: content.substr(0, 130) + "...",
                   }}
-                />
+                /> */}
                 <hr className="h-2 mt-10 mb-3" />
                 <div className="flex text-sm justify-between items-center">
                   <div className="flex items-center">

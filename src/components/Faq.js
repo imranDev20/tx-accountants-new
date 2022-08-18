@@ -46,12 +46,13 @@ const Faq = () => {
           </h2>
           <p className="text-neutral-600">{sectionDetails}</p>
         </div>
-        <div className="lg:w-1/2 w-full max-w-lg">
-          {faqs.map((faq) => (
+        <div className="lg:w-1/2 w-full max-w-lg border rounded">
+          {faqs.map((faq, index) => (
             <Accordion
               key={faq.id}
               question={faq?.faqQues}
               answer={faq?.faqAns}
+              index={index}
             />
           ))}
         </div>

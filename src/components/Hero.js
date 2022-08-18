@@ -2,7 +2,7 @@ import React from "react";
 import { useStaticQuery, graphql } from "gatsby";
 import { NormalButton } from "./Button";
 import { motion } from "framer-motion";
-import AnimatedText from "./AnimatedText";
+import AnimatedCharacters from "./AnimatedText";
 import "../styles/animation.css";
 
 const Hero = ({ showModal, setShowModal }) => {
@@ -64,7 +64,7 @@ const Hero = ({ showModal, setShowModal }) => {
         </video>
       </div>
       <div className="absolute text-center top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white w-11/12 md:w-1/2">
-        <motion.h2 className="font-extrabold uppercase my-3 text-3xl  md:text-5xl"></motion.h2>
+        <motion.h2 className="font-extrabold my-3 text-3xl  md:text-5xl"></motion.h2>
 
         <motion.div
           className="hero-animated-text"
@@ -75,7 +75,7 @@ const Hero = ({ showModal, setShowModal }) => {
         >
           <div className="container">
             {placeholderText.map((item, index) => {
-              return <AnimatedText {...item} key={index} />;
+              return <AnimatedCharacters {...item} key={index} />;
             })}
           </div>
         </motion.div>

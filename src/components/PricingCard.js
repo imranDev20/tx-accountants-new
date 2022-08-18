@@ -39,7 +39,7 @@ const PricingCard = ({ name, priceFixed, pricePM }) => {
       <p className="text-secondary-dark text-xl mb-2 font-semibold ">
         From £{priceFixed} or £{pricePM} P/M
       </p>
-      <LinkButton to="/">What's included</LinkButton>
+      <LinkButton to="/fixed-fee-pricing">What's included</LinkButton>
     </motion.div>
   );
 };

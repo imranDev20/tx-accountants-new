@@ -11,7 +11,6 @@ const AppointmentModal = loadable(() =>
 );
 const Contact = loadable(() => import("../components/Contact"));
 const Counter = loadable(() => import("../components/Counter"));
-const Faq = loadable(() => import("../components/Faq"));
 const News = loadable(() => import("../components/News"));
 const WhyUs = loadable(() => import("../components/WhyUs"));
 const WhatWeDo = loadable(() => import("../components/WhatWeDo"));
@@ -33,7 +32,7 @@ const IndexPage = () => {
       <News />
       <Contact />
       <Testimonial />
-      <Faq />
+      
       <AppointmentModal showModal={showModal} setShowModal={setShowModal} />
     </Layout>
   );

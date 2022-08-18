@@ -1,41 +1,45 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import {FaChevronDown} from 'react-icons/fa'
 
-const Accordion = ({ question, answer }) => {
+const Accordion = ({ question, answer, index }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <AnimatePresence>
+    <>
       <motion.div
         key="question"
-        className=""
         onClick={() => setIsOpen(!isOpen)}
+        className={`text-md font-medium  border-secondary/20 cursor-pointer bg-neutral-100 px-5 py-4 first:rounded-t border-b last:border-none
+        justify-between flex items-start last:rounded-b ${
+          isOpen ? "text-secondary" : "text-neutral-700"
+        }`}
       >
-        <motion.div
-          className={`text-md font-semibold mb-4 pb-2 border-b border-secondary/20 cursor-pointer  ${
-            isOpen ? "text-secondary" : "text-neutral-700"
-          }`}
-        >
-          Q: {question}
-        </motion.div>
+        <div className="w-11/12">
+          <span className="font-bold">Q{index + 1}:</span> {question}
+        </div>
+        <FaChevronDown className={`${isOpen && 'rotate-180'} w-1/12 transition-transform`} />
       </motion.div>
-
-      {isOpen && (
-        <motion.div
-          key="answer"
-          className="text-neutral-600 leading-7"
-          initial={{ opacity: 0, height: 0, marginBottom: 0 }}
-          animate={{
-            opacity: 1,
-            height: "auto",
-            marginBottom: 40,
-          }}
-          exit={{ opacity: 0, height: 0, marginBottom: 0 }}
-        >
-          <span className="font-semibold">Ans:</span> {answer}
-        </motion.div>
-      )}
-    </AnimatePresence>
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            key="answer"
+            className="text-neutral-600 leading-7 "
+            initial={{ opacity: 0, height: 0}}
+            animate={{
+              opacity: 1,
+              height: "auto",
+              
+            }}
+            exit={{ opacity: 0, height: 0}}
+          >
+            <div className="px-5 py-5">
+              <span className="font-semibold">Ans:</span> {answer}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
   );
 };
 
