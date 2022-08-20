@@ -6,9 +6,9 @@ import PricingCard from "./PricingCard";
 
 const PricingPlan = () => {
   const prices = [
-    { id: 1, name: "Individual", priceFixed: 150, pricePM: 15 },
-    { id: 2, name: "Sole Trader", priceFixed: 150, pricePM: 10 },
-    { id: 3, name: "Limited Company", priceFixed: 150, pricePM: 10 },
+    { id: 1, name: "Individual", priceFixed: 100, pricePM: 10 },
+    { id: 2, name: "Sole Trader", priceFixed: 300, pricePM: 25 },
+    { id: 3, name: "Limited Company", priceFixed: 600, pricePM: 60 },
   ];
 
   const [ref, inView] = useInView({

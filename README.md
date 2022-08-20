@@ -2,7 +2,7 @@
 
 ## [Live site link](https://txaccountants.co.uk)
 
-## About Partsyard
+## About TxAccountants
 
 We help sole proprietors, self-employed consultants, start-ups and small-to-midsize organizations with a full suite of affordable tax and accounting services.
 

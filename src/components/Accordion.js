@@ -10,7 +10,7 @@ const Accordion = ({ question, answer, index }) => {
       <motion.div
         key="question"
         onClick={() => setIsOpen(!isOpen)}
-        className={`text-md font-medium  border-secondary/20 cursor-pointer bg-neutral-100 px-5 py-4 first:rounded-t border-b last:border-none
+        className={`text-md font-medium cursor-pointer bg-neutral-100 px-5 py-4 first:rounded-t border-b last:border-none
         justify-between flex items-start last:rounded-b ${
           isOpen ? "text-secondary" : "text-neutral-700"
         }`}

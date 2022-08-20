@@ -38,7 +38,7 @@ const Faq = () => {
   console.log(faqs);
 
   return (
-    <section className="w-full py-20 bg-white px-10">
+    <section className="w-full py-20 bg-white px-10 mt-16">
       <div className="max-w-5xl mx-auto flex xl:flex-row flex-col items-center xl:items-start justify-between">
         <div className="w-full xl:w-1/3 mb-7">
           <h2 className="text-neutral-700 text-3xl font-semibold mb-5">
