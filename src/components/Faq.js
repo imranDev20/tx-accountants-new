@@ -39,14 +39,14 @@ const Faq = () => {
 
   return (
     <section className="w-full py-20 bg-white px-10 mt-16">
-      <div className="max-w-5xl mx-auto flex xl:flex-row flex-col items-center xl:items-start justify-between">
-        <div className="w-full xl:w-1/3 mb-7">
+      <div className="max-w-5xl mx-auto">
+        <div className="w-full mb-16 text-center">
           <h2 className="text-neutral-700 text-3xl font-semibold mb-5">
             {sectionTitle}
           </h2>
           <p className="text-neutral-600">{sectionDetails}</p>
         </div>
-        <div className="lg:w-1/2 w-full max-w-lg border rounded">
+        <div className="w-full max-w-4xl mx-auto border rounded">
           {faqs.map((faq, index) => (
             <Accordion
               key={faq.id}

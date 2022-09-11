@@ -7,37 +7,6 @@ const strapiConfig = {
   accessToken: process.env.STRAPI_TOKEN,
   collectionTypes: [
     {
-      singularName: "test",
-      queryParams: {
-        // Populate media and relations
-        // Make sure to not specify the fields key so the api always returns the updatedAt
-        populate: {
-          image: "*",
-          images: "*",
-          testDZ: {
-            populate: {
-              image: "*",
-              images: "*",
-              testSingleMedia: {
-                image: "*",
-              },
-              repeatableComponentTesting: {
-                populate: {
-                  mediaInRepeatable: {
-                    populate: {
-                      image: "*",
-                      images: "*",
-                    },
-                  },
-                },
-              },
-            },
-          },
-        },
-      },
-    },
-
-    {
       singularName: `page`,
       queryParams: {
         populate: {
@@ -182,7 +151,7 @@ module.exports = {
         // Setting a color is optional.
         color: `rgb(133, 77, 255)`,
         // Disable the loading spinner.
-        showSpinner: true,
+        showSpinner: false,
       },
     },
   ],

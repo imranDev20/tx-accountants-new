@@ -27,7 +27,7 @@ const About = () => {
   `);
   const aboutData = data?.strapiPage?.blocks[1];
 
-  const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
+  const { inView } = useInView({ threshold: 0.1, triggerOnce: true });
 
   const animationParagraph = useAnimation();
   const animationHeading = useAnimation();
@@ -56,7 +56,7 @@ const About = () => {
   }
 
   return (
-    <section className="mt-[calc(100vh-93px)] bg-white w-full border-t-4 border-secondary py-[70px] px-10">
+    <section className="bg-white w-full border-t-4 border-secondary py-[70px] px-10">
       <div className="max-w-5xl mx-auto text-center">
         <SectionTitle className={`text-neutral-700 text-3xl font-semibold `}>
           {aboutData?.aboutHeader?.sectionTitle}

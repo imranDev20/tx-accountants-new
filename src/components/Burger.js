@@ -4,7 +4,7 @@ const Burger = ({ open, setOpen }) => {
   return (
     <div
       onClick={() => setOpen(!open)}
-      className={`flex xl:hidden w-8 h-6 fixed top-9 right-4 justify-between flex-col flex-nowrap z-10 cursor-pointer`}
+      className={`flex xl:hidden w-8 h-6 justify-between flex-col flex-nowrap z-10 cursor-pointer`}
     >
       <div
         className={`w-8 bg-gray-50 rounded h-[3px] origin-[1px] transition-all ${

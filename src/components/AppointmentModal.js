@@ -4,7 +4,6 @@ import { FaTimes } from "react-icons/fa";
 import Form from "./Form";
 
 const AppointmentModal = ({ showModal, setShowModal }) => {
-  console.log(showModal);
   return (
     <div
       className={`h-0 ${

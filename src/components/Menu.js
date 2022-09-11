@@ -14,6 +14,8 @@ const Menu = () => {
           activeClassName="text-secondary-light"
           className="mx-4 text-white hover:text-secondary-light transition-colors my-3 xl:my-0"
           key={menuItem.strapi_id}
+          partiallyActive={menuItem.slug === "home" ? false : true}
+          isCurrent={menuItem.slug === "home" ? true : false}
           to={menuItem.slug === "home" ? `/` : `/${menuItem.slug}`}
         >
           {menuItem.title}

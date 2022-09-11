@@ -35,6 +35,7 @@ const Contact = () => {
     <BgImage
       image={getImage(data?.strapiPage?.blocks[7]?.contactBg?.localFile)}
       loading="lazy"
+      className="contact-bg"
       Tag="section"
     >
       <div className="relative before:content-[''] before:absolute before:bg-primary/60 before:h-full before:w-full before:top-0 before:left-0">

@@ -23,19 +23,12 @@ const InfoStrip = () => {
 
         <div className="flex justify-start xl:justify-center xl:border-l border-neutral-100/20 xl:pl-5">
           <FiMapPin className="mr-2 mt-2 text-xl" />
-          <div>
-            <div className="mb-3">
-              <p>Newcastle Office</p>
-              <p className="text-sm">
-                2A Beaconsfield Street, Newcastle, NE4 5JN
-              </p>
-            </div>
-            <div className="my-3">
-              <p>London Office</p>
-              <p className="text-sm">
-                20-22 Wenlock Road, London, England, N1 7GU
-              </p>
-            </div>
+
+          <div className="mb-3">
+            <p>London Office</p>
+            <p className="text-sm">
+              20-22 Wenlock Road, London, England, N1 7GU
+            </p>
           </div>
         </div>
       </div>

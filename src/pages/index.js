@@ -4,6 +4,7 @@ import loadable from "@loadable/component";
 import Hero from "../components/Hero";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
+import TestimonialModal from "../components/TestimonialModal";
 
 const About = loadable(() => import("../components/About"));
 const AppointmentModal = loadable(() =>
@@ -19,6 +20,8 @@ const PricingPlan = loadable(() => import("../components/PricingPlan"));
 
 const IndexPage = () => {
   const [showModal, setShowModal] = useState(false);
+  const [showTestimonialModal, setShowTestimonialModal] = useState(false);
+  const [refresh, setRefresh] = useState(false);
 
   return (
     <Layout>
@@ -31,8 +34,18 @@ const IndexPage = () => {
       <PricingPlan />
       <News />
       <Contact />
-      <Testimonial />
-      
+      <Testimonial
+        refresh={refresh}
+        setRefresh={setRefresh}
+        showModal={showTestimonialModal}
+        setShowModal={setShowTestimonialModal}
+      />
+      <TestimonialModal
+        refresh={refresh}
+        setRefresh={setRefresh}
+        showModal={showTestimonialModal}
+        setShowModal={setShowTestimonialModal}
+      />
       <AppointmentModal showModal={showModal} setShowModal={setShowModal} />
     </Layout>
   );
