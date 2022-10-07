@@ -20,10 +20,9 @@ const ScrollToTop = () => {
   };
   return (
     <div className="relative">
-      {" "}
       {showTopBtn && (
         <BsArrowUp
-          className="fixed bottom-40 right-8 z-50 bg-white shadow-xl rounded-lg h-12 w-12 p-2 text-secondary animate-bounce cursor-pointer icon-style"
+          className="fixed bottom-40 right-8 z-20 bg-white shadow-xl rounded-lg h-12 w-12 p-2 text-secondary animate-bounce cursor-pointer icon-style"
           onClick={goToTop}
         />
       )}{" "}

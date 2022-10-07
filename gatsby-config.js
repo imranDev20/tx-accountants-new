@@ -56,6 +56,21 @@ const strapiConfig = {
               faqStack: {
                 populate: "*",
               },
+              whoWeAreContent: {
+                populate: "*",
+              },
+              whoWeAreBg: {
+                populate: "*",
+              },
+              benefits: {
+                populate: "*",
+              },
+              idealFor: {
+                populate: "*",
+              },
+              visionTechContent:{
+                populate: "*",
+              }
             },
           },
         },
@@ -80,7 +95,7 @@ module.exports = {
   trailingSlash: "never",
   siteMetadata: {
     title: `Tx Accountants`,
-    siteUrl: `https://txaccountants.co.uk`,
+    siteUrl: process.env.SITE_URL,
     author: `@imrankabir97`,
   },
 

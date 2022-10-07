@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { getImage } from "gatsby-plugin-image";
-import { BgImage } from "gbimage-bridge";
+import { BgImage, convertToBgImage } from "gbimage-bridge";
+import BackgroundImage from "gatsby-background-image";
 
 const WhyUs = () => {
   const data = useStaticQuery(graphql`
@@ -26,7 +27,11 @@ const WhyUs = () => {
             whyUsBg {
               localFile {
                 childImageSharp {
-                  gatsbyImageData
+                  gatsbyImageData(
+                    placeholder: TRACED_SVG
+                    formats: WEBP
+                    layout: FULL_WIDTH
+                  )
                 }
               }
             }
@@ -55,14 +60,14 @@ const WhyUs = () => {
 
   const whyUsPoints = data?.strapiPage?.blocks[4]?.whyUsIconStack;
 
+  const image = getImage(data?.strapiPage?.blocks[4]?.whyUsBg?.localFile);
+  const bgImage = convertToBgImage(image);
+
   return (
     <section className="bg-primary">
       <div className="w-full mx-auto flex flex-col-reverse lg:flex-row  text-white">
         <div className="w-full h-screen max-h-[610px] relative lg:w-1/2 before:content-[''] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:w-full before:h-full before:bg-primary/60 before:z-10">
-          <BgImage
-            className="why-us-bg"
-            image={getImage(data?.strapiPage?.blocks[4]?.whyUsBg?.localFile)}
-          ></BgImage>
+          <BackgroundImage className="why-us-bg" {...bgImage}></BackgroundImage>
         </div>
 
         <div className="w-full pl-10 pr-10 lg:w-1/2 lg:max-w-xl py-20">

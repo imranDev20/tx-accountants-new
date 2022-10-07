@@ -2,7 +2,7 @@ import React from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
 
-const SectionText = ({ children, className }) => {
+const SectionText = ( props) => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const animationParagraph = useAnimation();
 
@@ -21,8 +21,8 @@ const SectionText = ({ children, className }) => {
   }
 
   return (
-    <motion.p ref={ref} animate={animationParagraph} className={`${className}`}>
-      {children}
+    <motion.p {...props} ref={ref} animate={animationParagraph} className={`${props.className}`}>
+      {props.children}
     </motion.p>
   );
 };

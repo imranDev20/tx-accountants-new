@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { useAnimation } from "framer-motion";
 import SectionTitle from "./SectionTitle";
 import SectionText from "./SectionText";
+import sanitizeHtml from "sanitize-html";
 
 const About = () => {
   const data = useStaticQuery(graphql`
@@ -17,8 +18,12 @@ const About = () => {
               link
             }
             aboutHeader {
-              sectionTitle
-              sectionDetails
+              title
+              content {
+                data {
+                  content
+                }
+              }
             }
           }
         }
@@ -59,16 +64,17 @@ const About = () => {
     <section className="bg-white w-full border-t-4 border-secondary py-[70px] px-10">
       <div className="max-w-5xl mx-auto text-center">
         <SectionTitle className={`text-neutral-700 text-3xl font-semibold `}>
-          {aboutData?.aboutHeader?.sectionTitle}
+          {aboutData?.aboutHeader?.title}
         </SectionTitle>
-        {/* <motion.h2
-          ref={ref}
-          animate={animationHeading}
-          className={``}
-        ></motion.h2> */}
-        <SectionText className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-normal">
-          {aboutData?.aboutHeader?.sectionDetails}
-        </SectionText>
+
+        <SectionText
+          className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-normal"
+          dangerouslySetInnerHTML={{
+            __html: sanitizeHtml(
+              aboutData?.aboutHeader?.content?.data?.content
+            ),
+          }}
+        ></SectionText>
 
         <LinkButton
           className="justify-center items-center "

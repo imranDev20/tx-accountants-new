@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-html{
-  @apply overflow-x-clip
+html {
+  @apply overflow-x-clip;
 }
 
 body {
@@ -13,15 +13,23 @@ body {
 #nprogress .bar {
   z-index: 100000000 !important;
   height: 4px !important;
+  
 }
 
-.why-us-bg {
+.why-us-bg,
+.why-us-bg::before,
+.why-us-bg::after {
   background-attachment: fixed;
   height: 100%;
   width: 100%;
 }
 
-.contact-bg{
+.contact-bg,
+.contact-bg::before,
+.contact-bg::after,
+.about-us-bg,
+.about-us-bg::before,
+.about-us-bg::after
+ {
   background-attachment: fixed;
 }
-

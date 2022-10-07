@@ -7,6 +7,7 @@ import { FaUserCircle, FaClock } from "react-icons/fa";
 import { useNewsQuery } from "../hooks/useNewsQuery";
 import NewsCard from "../components/NewsCard";
 import { Disqus } from "gatsby-plugin-disqus";
+import sanitizeHtml from "sanitize-html";
 
 const BlogDetails = ({ data }) => {
   const { title, publishedAt, content, slug, strapi_id } = data?.strapiBlog;
@@ -39,7 +40,7 @@ const BlogDetails = ({ data }) => {
             All Posts
           </Link>
         </div>
-        <div className="px-5 md:px-10 lg:  py-14 border">
+        <div className="px-5 md:px-20 lg:  py-14 border">
           <div className="flex items-center text-neutral-700">
             <span className="mr-5 flex items-center text-sm">
               <FaUserCircle className="mr-2" />
@@ -51,18 +52,13 @@ const BlogDetails = ({ data }) => {
             </span>
           </div>
 
-          <GatsbyImage
-            onClick={console.log("Clicked")}
-            className="my-5 w-full object-cover rounded"
-            image={blogImage}
-            alt={title}
-          />
-
           <div className="text-neutral-700">
             <h1 className="text-3xl my-2 leading-snug font-medium">{title}</h1>
-            {/* <p className="text-neutral-600 my-3">{content?.data?.content}</p> */}
-            {/* <ReactMarkdown>{}</ReactMarkdown> */}
-            <p dangerouslySetInnerHTML={{ __html: content?.data?.content }} />
+            <p
+              dangerouslySetInnerHTML={{
+                __html: sanitizeHtml(content?.data?.content),
+              }}
+            />
           </div>
         </div>
       </section>

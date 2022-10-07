@@ -1,5 +1,6 @@
 import React from "react";
 import Accordion from "./Accordion";
+import sanitizeHtml from "sanitize-html";
 
 import "../styles/accordion.css";
 
@@ -21,8 +22,12 @@ const Faq = () => {
               faqAns
             }
             faqHeader {
-              sectionTitle
-              sectionDetails
+              title
+              content {
+                data {
+                  content
+                }
+              }
             }
           }
         }
@@ -32,8 +37,7 @@ const Faq = () => {
 
   const faqs = data?.strapiPage?.blocks[6]?.faqStack;
 
-  const { sectionTitle, sectionDetails } =
-    data?.strapiPage?.blocks[6]?.faqHeader;
+  const { title, content } = data?.strapiPage?.blocks[6]?.faqHeader;
 
   console.log(faqs);
 
@@ -42,9 +46,13 @@ const Faq = () => {
       <div className="max-w-5xl mx-auto">
         <div className="w-full mb-16 text-center">
           <h2 className="text-neutral-700 text-3xl font-semibold mb-5">
-            {sectionTitle}
+            {title}
           </h2>
-          <p className="text-neutral-600">{sectionDetails}</p>
+          <p
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHtml(content?.data?.content),
+            }}
+          />
         </div>
         <div className="w-full max-w-4xl mx-auto border rounded">
           {faqs.map((faq, index) => (
