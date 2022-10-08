@@ -6,11 +6,10 @@ import { LinkButton } from "../components/Button";
 import HandGear from "../images/icons/hand-gear.svg";
 import LaptopGear from "../images/icons/laptop-gear.svg";
 import { graphql, useStaticQuery } from "gatsby";
-import sanitizeHtml from "sanitize-html";
 import { getImage } from "gatsby-plugin-image";
 import { convertToBgImage } from "gbimage-bridge";
 import BackgroundImage from "gatsby-background-image";
-
+import sanitizeHtml from "sanitize-html";
 const Faq = loadable(() => import("../components/Faq"));
 
 const AboutPage = () => {
@@ -78,12 +77,12 @@ const AboutPage = () => {
             {whoWeAre.whoWeAreContent.map((w) => (
               <div key={w.strapi_id} className="mb-5 text-white">
                 <h2 className="text-2xl mb-4 font-semibold ">{w.title}</h2>
-                <p
+                <div
                   className="my-2  leading-normal text-justify"
                   dangerouslySetInnerHTML={{
                     __html: sanitizeHtml(w.content?.data?.content),
                   }}
-                ></p>
+                ></div>
               </div>
             ))}
           </div>
@@ -105,12 +104,12 @@ const AboutPage = () => {
                 <h3 className="text-3xl text-secondary-dark mb-2 font-medium">
                   {v.title}
                 </h3>
-                <p
+                <div
                   className="text-neutral-600  leading-normal text-justify"
                   dangerouslySetInnerHTML={{
                     __html: sanitizeHtml(v.content.data.content),
                   }}
-                ></p>
+                ></div>
               </div>
             </div>
           ))}

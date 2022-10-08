@@ -92,7 +92,7 @@ const strapiConfig = {
 };
 
 module.exports = {
-  trailingSlash: "never",
+  trailingSlash: "always",
   siteMetadata: {
     title: `Tx Accountants`,
     siteUrl: process.env.SITE_URL,
@@ -164,7 +164,7 @@ module.exports = {
       resolve: `gatsby-plugin-nprogress`,
       options: {
         // Setting a color is optional.
-        color: `rgb(133, 77, 255)`,
+        color: `#854DFF`,
         // Disable the loading spinner.
         showSpinner: false,
       },

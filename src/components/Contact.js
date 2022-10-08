@@ -5,8 +5,8 @@ import { getImage } from "gatsby-plugin-image";
 import { graphql, useStaticQuery } from "gatsby";
 import SectionTitle from "./SectionTitle";
 import SectionText from "./SectionText";
-import sanitizeHtml from "sanitize-html";
 import BackgroundImage from "gatsby-background-image";
+import sanitizeHtml from "sanitize-html";
 
 const Contact = () => {
   const data = useStaticQuery(graphql`
@@ -18,8 +18,8 @@ const Contact = () => {
             id
             contactHeader {
               title
-              content{
-                data{
+              content {
+                data {
                   content
                 }
               }
@@ -37,8 +37,8 @@ const Contact = () => {
     }
   `);
 
-  const image = getImage(data?.strapiPage?.blocks[7]?.contactBg?.localFile)
-  const bgImage = convertToBgImage(image)
+  const image = getImage(data?.strapiPage?.blocks[7]?.contactBg?.localFile);
+  const bgImage = convertToBgImage(image);
 
   return (
     <BackgroundImage
@@ -53,9 +53,15 @@ const Contact = () => {
             {data?.strapiPage?.blocks[7]?.contactHeader?.title}
           </SectionTitle>
 
-          <SectionText className="text-white text-lg text-center max-w-3xl mx-auto my-5  leading-normal" dangerouslySetInnerHTML={{
-            __html: sanitizeHtml(data?.strapiPage?.blocks[7]?.contactHeader?.content.data.content)
-          }}>
+          <SectionText className="text-white text-lg text-center max-w-3xl mx-auto my-5  leading-normal">
+            <div
+              dangerouslySetInnerHTML={{
+                __html: sanitizeHtml(
+                  data?.strapiPage?.blocks[7]?.contactHeader?.content.data
+                    .content
+                ),
+              }}
+            ></div>
           </SectionText>
           <Form />
         </div>

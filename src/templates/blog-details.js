@@ -54,7 +54,7 @@ const BlogDetails = ({ data }) => {
 
           <div className="text-neutral-700">
             <h1 className="text-3xl my-2 leading-snug font-medium">{title}</h1>
-            <p
+            <div
               dangerouslySetInnerHTML={{
                 __html: sanitizeHtml(content?.data?.content),
               }}

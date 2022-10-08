@@ -1,7 +1,6 @@
 import React from "react";
 import Accordion from "./Accordion";
 import sanitizeHtml from "sanitize-html";
-
 import "../styles/accordion.css";
 
 // Demo styles, see 'Styles' section below for some notes on use.
@@ -48,7 +47,7 @@ const Faq = () => {
           <h2 className="text-neutral-700 text-3xl font-semibold mb-5">
             {title}
           </h2>
-          <p
+          <div
             dangerouslySetInnerHTML={{
               __html: sanitizeHtml(content?.data?.content),
             }}

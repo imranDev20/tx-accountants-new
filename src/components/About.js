@@ -67,20 +67,22 @@ const About = () => {
           {aboutData?.aboutHeader?.title}
         </SectionTitle>
 
-        <SectionText
-          className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-normal"
-          dangerouslySetInnerHTML={{
-            __html: sanitizeHtml(
-              aboutData?.aboutHeader?.content?.data?.content
-            ),
-          }}
-        ></SectionText>
-
+        <SectionText className="text-neutral-600 max-w-3xl mx-auto mt-5 leading-normal">
+          <div
+            dangerouslySetInnerHTML={{
+              __html: sanitizeHtml(
+                aboutData?.aboutHeader?.content?.data?.content
+              ),
+            }}
+          ></div>
+        </SectionText>
+      </div>
+      <div>
         <LinkButton
-          className="justify-center items-center "
-          to={`/${aboutData.aboutButton.link}`}
+          className="flex items-center justify-center"
+          to="/about-us"
         >
-          {aboutData?.aboutButton?.label}
+          More About Us
         </LinkButton>
       </div>
     </section>

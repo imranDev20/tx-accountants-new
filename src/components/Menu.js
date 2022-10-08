@@ -16,7 +16,7 @@ const Menu = () => {
           key={menuItem.strapi_id}
           partiallyActive={menuItem.slug === "home" ? false : true}
           // isCurrent={menuItem.slug === "home" ? true : false}
-          to={menuItem.slug === "home" ? `/` : `/${menuItem.slug}`}
+          to={menuItem.slug === "home" ? `/` : `/${menuItem.slug}/`}
         >
           {menuItem.title}
         </Link>

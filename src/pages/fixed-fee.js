@@ -1,3 +1,4 @@
+import { graphql, useStaticQuery } from "gatsby";
 import React, { useState } from "react";
 import Layout from "../components/Layout";
 import PriceCard from "../components/PriceCard";
@@ -5,6 +6,29 @@ import PricingModal from "../components/PricingModal";
 import Seo from "../components/Seo";
 
 const FixedFeePricingPage = () => {
+  const {strapiPage} = useStaticQuery(graphql`
+    query FixedFeeQuery {
+      strapiPage(title: { eq: "Fixed Fee" }) {
+        id
+        slug
+        blocks {
+          ... on STRAPI__COMPONENT_BLOCKS_FIXED_FEES {
+            id
+            benefits {
+              benefit
+              strapi_id
+            }
+            feesMonthly
+            feesAnnually
+            customerType
+            strapi_id
+          }
+        }
+      }
+    }
+  `);
+
+  console.log(strapiPage.blocks)
   const [showModal, setShowModal] = useState(false);
   const [priceId, setPriceId] = useState([]);
   const [title, setTitle] = useState(null);
