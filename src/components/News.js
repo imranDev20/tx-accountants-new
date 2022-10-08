@@ -22,20 +22,19 @@ const News = () => {
         <div className="flex justify-center items-center my-10">
           {
             <Swiper
-              modules={[Navigation, Pagination, A11y, Autoplay]}
+              modules={[Navigation, Pagination, Autoplay]}
               spaceBetween={50}
-              slidesPerView={3}
               autoplay
               breakpoints={{
                 0: {
                   slidesPerView: 1,
                 },
                 768: {
-                  slidesPerView: 2,
+                  slidesPerView: blogs.length < 2 ? blogs.length : 2,
                 },
                 // when window width is >= 768px
                 1280: {
-                  slidesPerView: 3,
+                  slidesPerView: blogs.length < 3 ? blogs.length : 3,
                 },
               }}
             >

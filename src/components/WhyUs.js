@@ -28,7 +28,7 @@ const WhyUs = () => {
               localFile {
                 childImageSharp {
                   gatsbyImageData(
-                    placeholder: TRACED_SVG
+                    placeholder: BLURRED
                     formats: WEBP
                     layout: FULL_WIDTH
                   )

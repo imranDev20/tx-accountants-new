@@ -23,7 +23,7 @@ const AboutPage = () => {
             whoWeAreBg {
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: TRACED_SVG)
+                  gatsbyImageData(placeholder: BLURRED)
                 }
               }
             }

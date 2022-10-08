@@ -56,7 +56,7 @@ const BlogDetails = ({ data }) => {
             <h1 className="text-3xl my-2 leading-snug font-medium">{title}</h1>
             <div
               dangerouslySetInnerHTML={{
-                __html: sanitizeHtml(content?.data?.content),
+                __html: content?.data?.content,
               }}
             />
           </div>
@@ -85,8 +85,7 @@ const BlogDetails = ({ data }) => {
               slug={recentBlog?.slug}
               isRecent
               image={
-                recentBlog?.image[0]?.localFile?.childImageSharp
-                  ?.gatsbyImageData
+                getImage(recentBlog?.image[0]?.localFile)
               }
             />
           ))}

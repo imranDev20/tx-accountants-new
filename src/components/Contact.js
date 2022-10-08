@@ -27,7 +27,7 @@ const Contact = () => {
             contactBg {
               localFile {
                 childImageSharp {
-                  gatsbyImageData(placeholder: TRACED_SVG)
+                  gatsbyImageData(placeholder: BLURRED)
                 }
               }
             }

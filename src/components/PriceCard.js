@@ -46,9 +46,9 @@ const PriceCard = ({
         {points.map((point) => (
           <p
             className="px-3 text-center py-[5px] text-fontColor-heading even:bg-[rgb(240,240,240)]"
-            key={point}
+            key={point.strapi_id}
           >
-            {point}
+            {point.benefit}
           </p>
         ))}
       </div>
@@ -56,15 +56,14 @@ const PriceCard = ({
       <div className="bg-secondary-dark rounded-b-lg px-4 py-5 text-white break-words">
         <h5 className="font-semibold mb-1">IDEAL FOR:</h5>
         <div>
-          {ideals.map((ideal) => (
-            <span
-              className="text-sm after:content-[','] last:after:content-['']"
-              key={ideal}
-            >
-              {" "}
-              {ideal}
-            </span>
-          ))}
+          {ideals.map((ideal, i) => {
+            const isLast = ideals.length - 1 === i
+            return (
+              <span className="text-sm" key={ideal.strapi_id}>
+                {ideal.iealForTypes}{!isLast && `, ` }
+              </span>
+            );
+          })}
         </div>
         <button
           className="bg-yellow-500 text-primary hover:bg-white text-sm tracking-[1.5px] transition-colors rounded-full px-5 py-2 my-3 w-full max-w-[150px] mx-auto flex justify-center uppercase font-bold mt-5"

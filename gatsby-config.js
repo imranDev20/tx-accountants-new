@@ -17,6 +17,8 @@ const strapiConfig = {
           },
           blocks: {
             populate: {
+              image: "*",
+              images: "*",
               heroBackground: {
                 populate: {
                   image: "*",
@@ -66,6 +68,9 @@ const strapiConfig = {
                 populate: "*",
               },
               idealFor: {
+                populate: "*",
+              },
+              backgroundImage:{
                 populate: "*",
               },
               visionTechContent:{
