@@ -3,7 +3,7 @@ import { useInView } from "react-intersection-observer";
 import CountUp from "react-countup";
 import { useAnimation, motion } from "framer-motion";
 
-const CounterBlock = ({ target, title, duration, icon, symbol }) => {
+const AchievementBlock = ({ target, title, duration, icon, symbol }) => {
   const [ref, inView] = useInView({
     threshold: 0.2,
     triggerOnce: true,
@@ -28,7 +28,7 @@ const CounterBlock = ({ target, title, duration, icon, symbol }) => {
   return (
     <div className=" text-center flex flex-col items-center my-10">
       <motion.div animate={animation} ref={ref} className="w-16 mb-5">
-        <img src={icon} alt="" />
+        <img src={icon} alt={title} />
       </motion.div>
       <CountUp
         start={0}
@@ -55,4 +55,4 @@ const CounterBlock = ({ target, title, duration, icon, symbol }) => {
   );
 };
 
-export default CounterBlock;
+export default AchievementBlock;

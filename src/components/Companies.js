@@ -5,53 +5,44 @@ import { GatsbyImage, getImage } from "gatsby-plugin-image";
 const Companies = () => {
   const data = useStaticQuery(graphql`
     query CompanyQuery {
-      strapiPage(title: { eq: "Home" }) {
-        blocks {
-          ... on STRAPI__COMPONENT_BLOCKS_COMPANIES {
-            id
-            company {
-              companyURL
-              strapi_id
-              companyImage {
-                localFile {
-                  childImageSharp {
-                    gatsbyImageData
-                  }
-                  publicURL
-                  url
-                }
-                ext
-                alternativeText
-              }
-            }
+      allContentfulPartnerCompanies(sort: { fields: companyId, order: ASC }) {
+        nodes {
+          name
+          companyId
+          url
+          id
+          image {
+            publicUrl
+            filename
+            url
+            gatsbyImageData(width: 300)
           }
         }
       }
     }
   `);
 
-  const companies = data?.strapiPage?.blocks[3]?.company;
+  const companies = data?.allContentfulPartnerCompanies?.nodes;
 
   return (
     <section className="w-full bg-white">
       <div className="py-5 max-w-xl mx-auto grid grid-cols-2 md:grid-cols-4 ">
         {companies?.map((company) => {
-          const image = getImage(company?.companyImage?.localFile);
+          const ext = company.image.filename.split(".")[1];
 
           return (
             <a
-              key={company?.strapi_id}
-              href={company?.companyURL}
+              key={company?.companyId}
+              href={company?.url}
               target="_blank"
-              className="max-w-[100px] mx-auto md:mx-5 flex items-center"
+              className={`${
+                company.companyId === 1 ? " max-w-[70px]" : "max-w-[170px]"
+              } mx-auto md:mx-5 flex items-center`}
             >
-              {company?.companyImage?.ext === ".svg" ? (
-                <img src={company?.companyImage?.localFile?.publicURL} alt="" />
+              {ext === "svg" ? (
+                <img src={company.image.url} alt="" className="w-72" />
               ) : (
-                <GatsbyImage
-                  image={image}
-                  alt={company?.companyImage?.alternativeText}
-                />
+                <GatsbyImage image={company.image.gatsbyImageData} alt="" />
               )}
             </a>
           );

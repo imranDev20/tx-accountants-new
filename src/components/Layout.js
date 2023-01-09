@@ -5,8 +5,7 @@ import "nprogress/nprogress.css";
 import ScrollToTop from "./ScrollToTop";
 import InfoStrip from "./InfoStrip";
 import Companies from "./Companies";
-import { motion } from "framer-motion";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Layout = ({ children }) => {

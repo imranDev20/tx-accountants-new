@@ -80,7 +80,6 @@ const AnimatedCharacters = (props) => {
           </Wrapper>
         );
       })}
-      {/* {} */}
     </Tag>
   );
 };

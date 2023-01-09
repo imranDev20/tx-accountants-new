@@ -1,6 +1,6 @@
 import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
-import WhyUsPoints from "./WhyUsPoints";
+import FeaturesPoints from "./FeaturesPoints";
 import { motion } from "framer-motion";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
@@ -8,33 +8,22 @@ import { getImage } from "gatsby-plugin-image";
 import { BgImage, convertToBgImage } from "gbimage-bridge";
 import BackgroundImage from "gatsby-background-image";
 
-const WhyUs = () => {
+const Features = () => {
   const data = useStaticQuery(graphql`
-    query WhyUsQuery {
-      strapiPage(title: { eq: "Home" }) {
-        blocks {
-          ... on STRAPI__COMPONENT_BLOCKS_WHY_US {
-            whyUsIconStack {
-              stackText
-              stackIcon {
-                localFile {
-                  url
-                  publicURL
-                }
-              }
-              strapi_id
-            }
-            whyUsBg {
-              localFile {
-                childImageSharp {
-                  gatsbyImageData(
-                    placeholder: BLURRED
-                    formats: WEBP
-                    layout: FULL_WIDTH
-                  )
-                }
-              }
-            }
+    query FeaturesQuery {
+      contentfulSections(identifier: { eq: "home-features" }) {
+        id
+        background {
+          gatsbyImage(width: 720, placeholder: BLURRED)
+        }
+        title
+      }
+      allContentfulFeatures(sort: { order: ASC, fields: featuresId }) {
+        nodes {
+          name
+          featuresId
+          icon {
+            url
           }
         }
       }
@@ -58,16 +47,17 @@ const WhyUs = () => {
     });
   }
 
-  const whyUsPoints = data?.strapiPage?.blocks[4]?.whyUsIconStack;
+  const featuresData = data?.contentfulSections;
+  const featuresPoints = data?.allContentfulFeatures?.nodes;
 
-  const image = getImage(data?.strapiPage?.blocks[4]?.whyUsBg?.localFile);
+  const image = featuresData.background.gatsbyImage;
   const bgImage = convertToBgImage(image);
 
   return (
     <section className="bg-primary">
       <div className="w-full mx-auto flex flex-col-reverse lg:flex-row  text-white">
         <div className="w-full h-screen max-h-[610px] relative lg:w-1/2 before:content-[''] before:absolute before:left-0 before:top-0 before:right-0 before:bottom-0 before:w-full before:h-full before:bg-primary/60 before:z-10">
-          <BackgroundImage className="why-us-bg" {...bgImage}></BackgroundImage>
+          <BackgroundImage className="why-us-bg" {...bgImage} />
         </div>
 
         <div className="w-full pl-10 pr-10 lg:w-1/2 lg:max-w-xl py-20">
@@ -76,13 +66,13 @@ const WhyUs = () => {
             animate={animateTitle}
             className="text-3xl font-semibold text-center lg:text-left"
           >
-            Why Us
+            {featuresData.title}
           </motion.h2>
           <div className="mt-10">
-            {whyUsPoints.map((point, index) => {
+            {featuresPoints.map((point, index) => {
               return (
-                <WhyUsPoints
-                  key={point?.strapi_id}
+                <FeaturesPoints
+                  key={point?.featuresId}
                   point={point}
                   index={index}
                 />
@@ -95,4 +85,4 @@ const WhyUs = () => {
   );
 };
 
-export default WhyUs;
+export default Features;

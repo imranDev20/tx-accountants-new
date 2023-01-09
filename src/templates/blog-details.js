@@ -1,32 +1,17 @@
 import { graphql, Link } from "gatsby";
-import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import { GatsbyImage } from "gatsby-plugin-image";
 import React from "react";
 import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import { FaUserCircle, FaClock } from "react-icons/fa";
-import { useNewsQuery } from "../hooks/useNewsQuery";
 import NewsCard from "../components/NewsCard";
-import { Disqus } from "gatsby-plugin-disqus";
-import sanitizeHtml from "sanitize-html";
+import BlogBodyRenderer from "../components/BlogBodyRenderer";
 
 const BlogDetails = ({ data }) => {
-  const { title, publishedAt, content, slug, strapi_id } = data?.strapiBlog;
-  const { displayName } = data?.strapiBlog?.author;
-  const blogImage = getImage(data?.strapiBlog?.image[0]?.localFile);
+  const { title, body, updatedAt, authorName } = data?.contentfulBlogs;
 
-  // Finding Recent
-  const { allStrapiBlog, site } = useNewsQuery();
-  const currentBlogID = data?.strapiBlog?.strapi_id;
-
-  const recentBlogs = allStrapiBlog?.nodes.filter(
-    (recentBlog) => recentBlog?.strapi_id !== currentBlogID
-  );
-
-  let disqusConfig = {
-    url: `${site.siteMetadata.siteUrl + "news/" + slug}`,
-    identifier: slug,
-    title: title,
-  };
+  const updateDate = new Date(Date.parse(updatedAt)).toLocaleString();
+  console.log(updateDate);
 
   return (
     <Layout>
@@ -44,28 +29,21 @@ const BlogDetails = ({ data }) => {
           <div className="flex items-center text-neutral-700">
             <span className="mr-5 flex items-center text-sm">
               <FaUserCircle className="mr-2" />
-              {displayName}
+              {authorName}
             </span>
             <span className="flex items-center text-sm">
               <FaClock className="mr-2" />
-              {publishedAt}
+              {updateDate}
             </span>
           </div>
 
           <div className="text-neutral-700">
-            <h1 className="text-3xl my-2 leading-snug font-medium">{title}</h1>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: content?.data?.content,
-              }}
-            />
+            <h1 className="text-4xl my-2 leading-snug font-semibold">
+              {title}
+            </h1>
           </div>
+          <BlogBodyRenderer body={body} />
         </div>
-      </section>
-
-      <section className="max-w-5xl mx-auto my-20 px-10">
-        {/* <CommentCount config={disqusConfig} placeholder={"..."} /> */}
-        <Disqus config={disqusConfig} />
       </section>
 
       <section className="max-w-5xl mx-auto mb-20 py-5 px-10">
@@ -78,17 +56,15 @@ const BlogDetails = ({ data }) => {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {recentBlogs?.slice(0, 3).map((recentBlog) => (
+          {/* {recentBlogs?.slice(0, 3).map((recentBlog) => (
             <NewsCard
               key={recentBlog?.strapi_id}
               title={recentBlog?.title}
               slug={recentBlog?.slug}
               isRecent
-              image={
-                getImage(recentBlog?.image[0]?.localFile)
-              }
+              image={getImage(recentBlog?.image[0]?.localFile)}
             />
-          ))}
+          ))} */}
         </div>
       </section>
     </Layout>
@@ -98,28 +74,27 @@ export default BlogDetails;
 
 export const query = graphql`
   query BlogDetailsQuery($slug: String) {
-    strapiBlog(slug: { eq: $slug }) {
-      strapi_id
+    contentfulBlogs(slug: { eq: $slug }) {
       title
-      locale
-      publishedAt(formatString: "DD MMMM, YYYY")
       updatedAt
-      content {
-        data {
-          content
-        }
-      }
-      author {
-        displayName
-      }
-      image {
-        localFile {
-          childImageSharp {
-            gatsbyImageData
+      authorName
+      body {
+        raw
+        references {
+          ... on ContentfulAsset {
+            contentful_id
+            title
+            description
+            gatsbyImageData(width: 1000)
+            __typename
           }
         }
       }
+      featuredImage {
+        gatsbyImageData(width: 1280, placeholder: BLURRED)
+      }
       slug
+      createdAt
     }
   }
 `;

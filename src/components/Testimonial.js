@@ -6,27 +6,31 @@ import SectionTitle from "./SectionTitle";
 import SectionText from "./SectionText";
 import { NormalButton } from "./Button";
 
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/pagination";
 import "../styles/slider.css";
 
 const Testimonial = ({ showModal, setShowModal, refresh }) => {
   const [testimonials, setTestimonials] = useState([]);
+  const contentful = require("contentful-management");
 
-  console.log(refresh)
-
-  const url = `${process.env.STRAPI_API_URL}/api/reviews`
-
-  console.log(url)
+  const client = contentful.createClient({
+    accessToken: process.env.CONTENTFUL_MANAGEMENT_KEY,
+  });
 
   useEffect(() => {
-    fetch(`${process.env.STRAPI_API_URL}/api/reviews`)
-      .then((res) => res.json())
-      .then((data) => setTestimonials(data.data?.sort((a,b)=> b.id - a.id)));
-  }, [refresh]);
-
-  console.log(testimonials);
-  
+    client
+      .getSpace(process.env.CONTENTFUL_SPACE_ID)
+      .then((space) => space.getEnvironment("master"))
+      .then((environment) =>
+        environment.getPublishedEntries({ content_type: "testimonial" })
+      ) // you can add more queries as 'key': 'value'
+      .then((response) => {
+        // console.log(response.items);
+        setTestimonials(response.items);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <section className="w-full bg-neutral-100 py-20">
@@ -55,23 +59,15 @@ const Testimonial = ({ showModal, setShowModal, refresh }) => {
               slidesPerView: 3,
             },
           }}
-          className=""
         >
-          {testimonials || testimonials?.length !== 0
-            ? testimonials?.map((testimonial) => {
-                return (
-                  <SwiperSlide
-                    className="py-10"
-                    key={testimonial?.id}
-                  >
-                    <TestimonialCard
-                      name={testimonial?.attributes.name}
-                      text={testimonial?.attributes.text}
-                    />
-                  </SwiperSlide>
-                );
-              })
-            : "No testimonial available yet"}
+          {testimonials.map((item, index) => (
+            <SwiperSlide className="py-10" key={index}>
+              <TestimonialCard
+                name={item.fields.name["en-US"]}
+                text={item.fields.text["en-US"]}
+              />
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
       <div className="flex justify-center items-center">

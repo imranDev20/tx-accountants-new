@@ -1,15 +1,41 @@
 import { useAnimation, motion } from "framer-motion";
+import { graphql, useStaticQuery } from "gatsby";
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import { LinkButton } from "./Button";
 import PricingCard from "./PricingCard";
+import ReactMarkdown from "react-markdown";
 
 const PricingPlan = () => {
-  const prices = [
-    { id: 1, name: "Individual", priceFixed: 100, pricePM: 10 },
-    { id: 2, name: "Sole Trader", priceFixed: 300, pricePM: 25 },
-    { id: 3, name: "Limited Company", priceFixed: 600, pricePM: 60 },
-  ];
+  const data = useStaticQuery(graphql`
+    query HomePricingQuery {
+      allContentfulSections(
+        filter: {
+          identifier: { in: ["home-faster", "home-smarter", "home-pricing"] }
+        }
+      ) {
+        nodes {
+          title
+          description {
+            description
+          }
+        }
+      }
+      allContentfulPricing(sort: { fields: pricingId, order: ASC }) {
+        nodes {
+          pricingId
+          monthlyPrice
+          fixedPrice
+          title
+        }
+      }
+    }
+  `);
+
+  const content = data?.allContentfulSections?.nodes?.slice(1, 3);
+
+  const pricingHeader = data?.allContentfulSections?.nodes[0];
+  const prices = data?.allContentfulPricing?.nodes;
 
   const [ref, inView] = useInView({
     threshold: 0.1,
@@ -45,61 +71,42 @@ const PricingPlan = () => {
   return (
     <section className="bg-neutral-100 py-20 px-10">
       <div className="max-w-5xl mx-auto  ">
-        <div className="mb-5">
-          <motion.h2
-            animate={animationTitle}
-            ref={ref}
-            className="text-3xl text-neutral-700 mb-3 font-semibold"
-          >
-            We Are Faster
-          </motion.h2>
-          <motion.p
-            animate={animationText}
-            ref={ref}
-            className="text-neutral-600 text-justify  leading-normal"
-          >
-            We have designed our services to easily fit within a busy
-            executive's lifestyle through our cloud-based accounting software.
-            We understand the importance of deadlines and work quickly to ensure
-            each one is met. We know our clients are busy running their
-            businesses, so. We guarantee a response to any inquiry within 24
-            hours. Our friendly team is committed to delivering fast, efficient
-            service with unwavering attention to detail.
-          </motion.p>
-        </div>
-        <div className="mb-5">
-          <motion.h2
-            animate={animationTitle}
-            ref={ref}
-            className="text-3xl text-neutral-700 mb-3 font-semibold"
-          >
-            We Are Smarter
-          </motion.h2>
-          <motion.p
-            animate={animationText}
-            ref={ref}
-            className="text-neutral-600 text-justify  leading-normal"
-          >
-            We offer every tax and accounting service a growing business needs
-            to succeed, including help with start-up business plans, day-to-day
-            running of accounts, payroll, VAT and taxation services and much
-            more. Our charter-certified accountants and comprehensive,
-            cloud-based software can handle any kind of business accounting
-            challenges.
-          </motion.p>
-        </div>
+        {content.reverse().map((item) => (
+          <div className="mb-5">
+            <motion.h2
+              animate={animationTitle}
+              ref={ref}
+              className="text-3xl text-neutral-700 mb-3 font-semibold"
+            >
+              {item?.title}
+            </motion.h2>
+            <motion.p
+              animate={animationText}
+              ref={ref}
+              className="text-neutral-600 text-justify  leading-normal"
+            >
+              <ReactMarkdown
+                components={{
+                  p: React.Fragment,
+                }}
+              >
+                {item?.description?.description}
+              </ReactMarkdown>
+            </motion.p>
+          </div>
+        ))}
 
         <div className="text-center mt-10">
           <h2 className="text-3xl text-secondary-dark mt-14 mb-5 font-semibold">
-            Get Your Plan
+            {pricingHeader.title}
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
             {prices.map((price) => (
               <PricingCard
-                key={price?.id}
-                name={price?.name}
-                priceFixed={price?.priceFixed}
-                pricePM={price?.pricePM}
+                key={price?.pricingId}
+                name={price?.title}
+                priceFixed={price?.fixedPrice}
+                pricePM={price?.monthlyPrice}
               />
             ))}
           </div>

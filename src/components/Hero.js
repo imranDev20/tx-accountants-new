@@ -8,33 +8,29 @@ import "../styles/animation.css";
 const Hero = ({ showModal, setShowModal }) => {
   const data = useStaticQuery(graphql`
     query HeroQuery {
-      strapiPage(title: { eq: "Home" }) {
-        blocks {
-          ... on STRAPI__COMPONENT_BLOCKS_HERO {
-            heroButton {
-              label
-            }
-            titleBig
-            titleSmall
-            heroBackground {
-              localFile {
-                url
-              }
-            }
-          }
+      contentfulSections(identifier: { eq: "home-hero" }) {
+        id
+        button
+        title
+        description {
+          description
+        }
+        background {
+          url
+          publicUrl
         }
       }
     }
   `);
 
-  const heroData = data.strapiPage.blocks[0];
+  const heroData = data.contentfulSections;
 
   // Placeholder text data, as if from API
   const placeholderText = [
-    { type: "heading1", text: heroData.titleBig },
+    { type: "heading1", text: heroData.title },
     {
       type: "heading2",
-      text: heroData.titleSmall,
+      text: heroData.description.description,
     },
   ];
 
@@ -56,10 +52,7 @@ const Hero = ({ showModal, setShowModal }) => {
           loop
           width="100%"
         >
-          <source
-            src={heroData?.heroBackground?.localFile?.url}
-            type="video/mp4"
-          />
+          <source src={heroData?.background.url} type="video/mp4" />
           Your browser does not support HTML5 video.
         </video>
       </div>
@@ -89,7 +82,7 @@ const Hero = ({ showModal, setShowModal }) => {
             onClick={() => setShowModal(!showModal)}
             className="px-5 py-3 mt-5"
           >
-            {heroData.heroButton.label}
+            {heroData.button}
           </NormalButton>
         </motion.div>
       </div>

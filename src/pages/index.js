@@ -11,9 +11,9 @@ const AppointmentModal = loadable(() =>
   import("../components/AppointmentModal")
 );
 const Contact = loadable(() => import("../components/Contact"));
-const Counter = loadable(() => import("../components/Counter"));
-const News = loadable(() => import("../components/News"));
-const WhyUs = loadable(() => import("../components/WhyUs"));
+const Achievements = loadable(() => import("../components/Achievements"));
+// const News = loadable(() => import("../components/News"));
+const Features = loadable(() => import("../components/Features"));
 const WhatWeDo = loadable(() => import("../components/WhatWeDo"));
 const Testimonial = loadable(() => import("../components/Testimonial"));
 const PricingPlan = loadable(() => import("../components/PricingPlan"));
@@ -29,10 +29,11 @@ const IndexPage = () => {
       <Hero showModal={showModal} setShowModal={setShowModal} />
       <About />
       <WhatWeDo />
-      <WhyUs />
-      <Counter />
+      <Features />
+      <Achievements />
       <PricingPlan />
-      <News />
+      {/*<News />
+       */}
       <Contact />
       <Testimonial
         refresh={refresh}

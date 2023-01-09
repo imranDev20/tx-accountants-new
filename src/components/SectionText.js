@@ -1,8 +1,9 @@
 import React from "react";
 import { useInView } from "react-intersection-observer";
 import { motion, useAnimation } from "framer-motion";
+import ReactMarkdown from "react-markdown";
 
-const SectionText = ( props) => {
+const SectionText = (props) => {
   const { ref, inView } = useInView({ threshold: 0.1, triggerOnce: true });
   const animationParagraph = useAnimation();
 
@@ -21,8 +22,19 @@ const SectionText = ( props) => {
   }
 
   return (
-    <motion.p {...props} ref={ref} animate={animationParagraph} className={`${props.className}`}>
-      {props.children}
+    <motion.p
+      {...props}
+      ref={ref}
+      animate={animationParagraph}
+      className={`${props.className}`}
+    >
+      <ReactMarkdown
+        components={{
+          p: React.Fragment,
+        }}
+      >
+        {props.children}
+      </ReactMarkdown>
     </motion.p>
   );
 };

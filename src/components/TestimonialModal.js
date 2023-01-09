@@ -9,36 +9,69 @@ import LoadingSpinner from "./LoadingSpinner";
 const TestimonialModal = ({ showModal, setShowModal, refresh, setRefresh }) => {
   const [loading, setLoading] = useState(false);
 
-  const createNewTestimonial = async (data) => {
-    await http
-      .post("/api/reviews", data)
-      .then((res) => {
-        setLoading(true);
-        console.log(res);
-        setLoading(false);
-      })
-      .catch((err) => console.log(err));
-  };
+  // const createNewTestimonial = async (data) => {
+  //   await http
+  //     .post("/api/reviews", data)
+  //     .then((res) => {
+  //       setLoading(true);
+  //       console.log(res);
+  //       setLoading(false);
+  //     })
+  //     .catch((err) => console.log(err));
+  // };
+
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const name = e.target.name.value;
+  //   const email = e.target.email.value;
+  //   const text = e.target.text.value;
+
+  //   const data = JSON.stringify({
+  //     data: {
+  //       name: name,
+  //       email: email,
+  //       text: text,
+  //     },
+  //   });
+
+  //   setRefresh(false);
+  //   createNewTestimonial(data);
+  //   setRefresh(true);
+  //   e.target.reset();
+  //   setShowModal(!showModal);
+  // };
+
+  const contentful = require("contentful-management");
+
+  const client = contentful.createClient({
+    accessToken: process.env.CONTENTFUL_MANAGEMENT_KEY,
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const name = e.target.name.value;
-    const email = e.target.email.value;
-    const text = e.target.text.value;
-
-    const data = JSON.stringify({
-      data: {
-        name: name,
-        email: email,
-        text: text,
-      },
-    });
-
-    setRefresh(false);
-    createNewTestimonial(data);
-    setRefresh(true);
-    e.target.reset();
-    setShowModal(!showModal);
+    client
+      .getSpace(process.env.CONTENTFUL_SPACE_ID)
+      .then((space) => space.getEnvironment("master"))
+      .then((environment) =>
+        environment.createEntry("testimonial", {
+          fields: {
+            name: {
+              "en-US": e.target.name.value,
+            },
+            email: {
+              "en-US": e.target.email.value,
+            },
+            text: {
+              "en-US": e.target.text.value,
+            },
+          },
+        })
+      )
+      .then((entry) => {
+        entry.publish();
+        console.log(entry);
+      })
+      .catch(console.error);
   };
 
   return (
@@ -85,8 +118,8 @@ const TestimonialModal = ({ showModal, setShowModal, refresh, setRefresh }) => {
             type="submit"
             className={`text-white py-2 w-1/2 mx-auto flex items-center justify-center bg-secondary`}
           >
-            Submit 
-            {loading? (
+            Submit
+            {loading ? (
               <LoadingSpinner
                 className={`w-5 h-5 ml-2 text-gray-200/50 animate-spin fill-white `}
               />

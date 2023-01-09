@@ -3,14 +3,15 @@ const path = require("path");
 exports.createPages = async ({ graphql, actions }) => {
   const { data } = await graphql(`
     query {
-      allStrapiBlog {
+      allContentfulBlogs {
         nodes {
           slug
         }
       }
     }
   `);
-  data?.allStrapiBlog?.nodes.forEach((node) => {
+
+  data?.allContentfulBlogs?.nodes.forEach((node) => {
     actions.createPage({
       path: "/news/" + node?.slug,
       component: path.resolve("./src/templates/blog-details.js"),

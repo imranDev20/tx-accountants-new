@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const WhyUsPoints = ({ point, index }) => {
+const FeaturesPoints = ({ point, index }) => {
   const { ref, inView } = useInView({ threshold: 0.2, triggerOnce: true });
   const animatePoints = useAnimation();
 
@@ -32,15 +32,11 @@ const WhyUsPoints = ({ point, index }) => {
       key={index}
       className="flex items-center my-5 "
     >
-      <img
-        className="w-6 mr-3"
-        src={point?.stackIcon?.localFile?.publicURL}
-        alt=""
-      />
+      <img className="w-6 mr-3" src={point?.icon?.url} alt="" />
 
-      <span className="text-lg">{point?.stackText}</span>
+      <span className="text-lg">{point?.name}</span>
     </motion.div>
   );
 };
 
-export default WhyUsPoints;
+export default FeaturesPoints;

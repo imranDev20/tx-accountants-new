@@ -6,7 +6,7 @@ import { useMenuQuery } from "../hooks/useMenuQuery";
 
 const Footer = () => {
   const data = useMenuQuery();
-  const menuItems = data.allStrapiPage.nodes;
+  const menuItems = data.allContentfulPages.nodes;
 
   return (
     <footer className="bg-primary text-white py-20 px-10">
@@ -24,7 +24,7 @@ const Footer = () => {
           {menuItems.map((menuItem) => (
             <Link
               className="text-white block my-2"
-              key={menuItem.strapi_id}
+              key={menuItem.pageId}
               to={menuItem.slug === "home" ? `/` : `/${menuItem.slug}/`}
             >
               {menuItem.title}
