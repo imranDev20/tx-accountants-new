@@ -24,9 +24,10 @@ const Services = () => {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-3 my-10">
-      {services.map((service) => (
+      {services.map((service, index) => (
         <WorkCard
           key={service.serviceId}
+          index={index}
           inView={inView}
           name={service.name}
           icon={service.icon.url}

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useAnimation } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 
-const WorkCard = ({ name, icon }) => {
+const WorkCard = ({ name, icon, index }) => {
   const { ref, inView } = useInView({ threshold: 0.5, triggerOnce: true });
   const animateWorkCard = useAnimation();
 
@@ -11,7 +11,12 @@ const WorkCard = ({ name, icon }) => {
     animateWorkCard.start({
       scale: 1,
       opacity: 1,
-      transition: { type: "spring", duration: 1.5, bounce: 0.5 },
+      transition: {
+        type: "spring",
+        duration: 1.5,
+        bounce: 0.3,
+        delay: index * 0.1,
+      },
     });
   }
   if (!inView) {

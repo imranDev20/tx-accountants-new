@@ -1,45 +1,20 @@
 import React from "react";
 import { useState } from "react";
 import { FaTimes } from "react-icons/fa";
-import http from "../utils/http";
 import { NormalButton } from "./Button";
 import { FiSend } from "react-icons/fi";
 import LoadingSpinner from "./LoadingSpinner";
 
-const TestimonialModal = ({ showModal, setShowModal, refresh, setRefresh }) => {
+const TestimonialModal = ({
+  showModal,
+  setShowModal,
+  refresh,
+  setRefresh,
+  testimonials,
+  setTestimonials,
+  setSlideTo,
+}) => {
   const [loading, setLoading] = useState(false);
-
-  // const createNewTestimonial = async (data) => {
-  //   await http
-  //     .post("/api/reviews", data)
-  //     .then((res) => {
-  //       setLoading(true);
-  //       console.log(res);
-  //       setLoading(false);
-  //     })
-  //     .catch((err) => console.log(err));
-  // };
-
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const name = e.target.name.value;
-  //   const email = e.target.email.value;
-  //   const text = e.target.text.value;
-
-  //   const data = JSON.stringify({
-  //     data: {
-  //       name: name,
-  //       email: email,
-  //       text: text,
-  //     },
-  //   });
-
-  //   setRefresh(false);
-  //   createNewTestimonial(data);
-  //   setRefresh(true);
-  //   e.target.reset();
-  //   setShowModal(!showModal);
-  // };
 
   const contentful = require("contentful-management");
 
@@ -48,10 +23,14 @@ const TestimonialModal = ({ showModal, setShowModal, refresh, setRefresh }) => {
   });
 
   const handleSubmit = (e) => {
+    setLoading(false);
     e.preventDefault();
     client
       .getSpace(process.env.CONTENTFUL_SPACE_ID)
-      .then((space) => space.getEnvironment("master"))
+      .then((space) => {
+        setLoading(true);
+        return space.getEnvironment("master");
+      })
       .then((environment) =>
         environment.createEntry("testimonial", {
           fields: {
@@ -69,7 +48,21 @@ const TestimonialModal = ({ showModal, setShowModal, refresh, setRefresh }) => {
       )
       .then((entry) => {
         entry.publish();
-        console.log(entry);
+        e.target.reset();
+      })
+      .then(() => {
+        client
+          .getSpace(process.env.CONTENTFUL_SPACE_ID)
+          .then((space) => space.getEnvironment("master"))
+          .then((environment) =>
+            environment.getPublishedEntries({ content_type: "testimonial" })
+          ) // you can add more queries as 'key': 'value'
+          .then((response) => {
+            setLoading(false);
+            setTestimonials(response.items);
+            setShowModal(false);
+          })
+          .catch(console.error);
       })
       .catch(console.error);
   };
@@ -91,6 +84,7 @@ const TestimonialModal = ({ showModal, setShowModal, refresh, setRefresh }) => {
         <h2 className="font-semibold text-2xl my-5 text-secondary-dark text-center uppercase">
           Leave a Testimonial
         </h2>
+
         <form action="" onSubmit={handleSubmit}>
           <input
             placeholder="Your Name"

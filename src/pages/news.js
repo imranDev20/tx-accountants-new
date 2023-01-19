@@ -1,104 +1,137 @@
-// import React from "react";
-// import Layout from "../components/Layout";
-// import Seo from "../components/Seo";
-// import { Link } from "gatsby";
-// import { GatsbyImage, getImage } from "gatsby-plugin-image";
-// import { FaUserCircle, FaClock, FaHeart } from "react-icons/fa";
-// import { useNewsQuery } from "../hooks/useNewsQuery";
-// import { CommentCount } from "gatsby-plugin-disqus";
-// import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import Layout from "../components/Layout";
+import Seo from "../components/Seo";
+import { graphql, Link, useStaticQuery } from "gatsby";
+import { GatsbyImage, getImage } from "gatsby-plugin-image";
+import {
+  FaUserCircle,
+  FaClock,
+  FaHeart,
+  FaEye,
+  FaRegEnvelope,
+} from "react-icons/fa";
+import { BsSearch } from "react-icons/bs";
 
-// const NewsPage = () => {
-//   const { allStrapiBlog, site } = useNewsQuery();
-//   const blogs = allStrapiBlog?.nodes;
+const NewsPage = () => {
+  const data = useStaticQuery(graphql`
+    query NewsQuery {
+      blogs: allContentfulBlogs {
+        nodes {
+          id
+          authorName
+          slug
+          title
+          summary {
+            summary
+          }
+          featuredImage {
+            gatsbyImageData
+          }
+          createdAt(formatString: "DD MMMM YYYY")
+        }
+      }
+    }
+  `);
 
-//   useEffect(() => {
-//     getData();
-//   }, []);
+  const blogs = data?.blogs?.nodes;
+  const [searchTerm, setSearchTerm] = useState("");
 
-//   const getData = async () => {
-//     const response = await fetch(
-//       "https://disqus.com/api/3.0/forums/listPosts.json?forum=txaccountants&api_key=yhC18Md1zY2GWhYYU0W45C0APHaO7OEDRGpYf3mpHiu2u4DHj6MUfw08xGoc9tya"
-//     );
-//     const users = await response.json();
-//     console.log(users);
-//   };
+  function getSearchedBlogs(e) {
+    e.preventDefault();
+    console.log(e.target.search.value);
+    setSearchTerm(e.target.search.value.toLowerCase());
+  }
 
-//   return (
-//     <Layout>
-//       <Seo title="News" />
-//       <section className="mx-auto max-w-5xl py-5 px-10">
-//         {blogs.map((blog) => {
-//           // Simplyfying
-//           const blogImage = getImage(blog?.image[0]?.localFile);
-//           const { title, slug, excerpt } = blog;
-//           const content = blog?.content?.data?.content;
+  return (
+    <Layout>
+      <Seo title="News" />
+      <section className="mx-auto max-w-5xl py-5 px-10">
+        <div className="flex items-center justify-end">
+          <form onSubmit={getSearchedBlogs}>
+            <input
+              type="text"
+              name="search"
+              className="outline-none border-b border-secondary"
+              placeholder="Search..."
+            />
+            <button type="submit">
+              <BsSearch className="mr-2" />
+            </button>
+          </form>
+        </div>
 
-//           let disqusConfig = {
-//             url: `${site?.siteMetadata?.siteUrl + "news/" + slug}`,
-//             identifier: slug,
-//             title: title,
-//           };
+        {blogs
+          .filter((val) => val.title.toLowerCase().includes(searchTerm))
+          .map((blog) => {
+            return (
+              <div
+                key={blog?.id}
+                className="flex flex-col lg:flex-row my-10 border rounded overflow-hidden"
+              >
+                <div className="lg:w-1/2 ">
+                  <Link to={blog?.slug}>
+                    <GatsbyImage
+                      className="w-full h-full object-cover"
+                      image={blog?.featuredImage?.gatsbyImageData}
+                      alt={blog?.title}
+                    />
+                  </Link>
+                </div>
+                <div className="lg:w-1/2 p-7">
+                  <div className="mb-3 text-neutral-700 text-sm">
+                    <p className="flex items-center">
+                      <FaUserCircle className="mr-1" />
+                      {blog?.authorName}
+                    </p>
+                    <p className="flex items-center">
+                      <FaClock className="mr-1" /> {blog?.createdAt}
+                    </p>
+                  </div>
 
-//           return (
-//             <div
-//               key={blog?.strapi_id}
-//               className="flex flex-col lg:flex-row my-10 border rounded overflow-hidden"
-//             >
-//               <div className="lg:w-1/2 ">
-//                 <Link to={`/news/${blog?.slug}`}>
-//                   <GatsbyImage
-//                     className="w-full h-full object-cover"
-//                     image={blogImage}
-//                     alt={title}
-//                   />
-//                 </Link>
-//               </div>
-//               <div className="lg:w-1/2 p-7">
-//                 <div className="mb-3 text-neutral-700 text-sm">
-//                   <p className="flex items-center">
-//                     <FaUserCircle className="mr-1" />{" "}
-//                     {blog?.author?.displayName}
-//                   </p>
-//                   <p className="flex items-center">
-//                     <FaClock className="mr-1" /> {blog?.publishedAt}
-//                   </p>
-//                 </div>
+                  <Link to={`/news/${blog.slug}`}>
+                    <h4 className="text-3xl my-3 font-medium leading-snug text-neutral-700 hover:text-secondary transition-colors">
+                      {blog?.title.length > 45
+                        ? blog?.title.substring(0, 40) + `...`
+                        : blog?.title}
+                    </h4>
+                  </Link>
 
-//                 <Link to={`/news/${blog?.slug}`}>
-//                   <h4 className="text-3xl my-3 font-medium leading-snug text-neutral-700 hover:text-secondary transition-colors">
-//                     {title.length > 45 ? title.substring(0, 40) + `...` : title}
-//                   </h4>
-//                 </Link>
+                  <p className="text-neutral-600 leading-normal">
+                    {blog.summary?.summary > 130
+                      ? blog.summary?.summary.substr(0, 130) + "..."
+                      : blog.summary?.summary}
+                  </p>
 
-//                 <p>
-//                   {excerpt.length > 130
-//                     ? excerpt.substr(0, 130) + "..."
-//                     : excerpt}
-//                 </p>
+                  <hr className="h-2 mt-10 mb-3" />
+                  <div className="flex text-xs justify-between items-center">
+                    <div className="flex text-xs justify-between items-center text-neutral-600">
+                      <div className="flex items-center">
+                        <p className="mr-5 flex items-center">
+                          <FaEye className="mr-1 text-[15px]" />
+                          17
+                        </p>
+                      </div>
+                      <div className="flex items-center">
+                        <p className="mr-5 flex items-center">
+                          <FaRegEnvelope className="mr-1 text-[15px]" />
+                          22
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-center text-neutral-600">
+                      <p>18</p>
+                      <button>
+                        <FaHeart className="ml-1.5" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+      </section>
+    </Layout>
+  );
+};
 
-//                 {/* <p
-//                   dangerouslySetInnerHTML={{
-//                     __html: content.substr(0, 130) + "...",
-//                   }}
-//                 /> */}
-//                 <hr className="h-2 mt-10 mb-3" />
-//                 <div className="flex text-sm justify-between items-center">
-//                   <div className="flex items-center">
-//                     <p className="mr-5">17 views</p>
-//                     <CommentCount config={disqusConfig} placeholder={"..."} />
-//                   </div>
-//                   <button>
-//                     <FaHeart />
-//                   </button>
-//                 </div>
-//               </div>
-//             </div>
-//           );
-//         })}
-//       </section>
-//     </Layout>
-//   );
-// };
-
-// export default NewsPage;
+export default NewsPage;

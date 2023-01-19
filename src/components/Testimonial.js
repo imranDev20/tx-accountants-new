@@ -10,10 +10,15 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "../styles/slider.css";
 
-const Testimonial = ({ showModal, setShowModal, refresh }) => {
-  const [testimonials, setTestimonials] = useState([]);
+const Testimonial = ({
+  showModal,
+  setShowModal,
+  refresh,
+  testimonials,
+  setTestimonials,
+  slideTo,
+}) => {
   const contentful = require("contentful-management");
-
   const client = contentful.createClient({
     accessToken: process.env.CONTENTFUL_MANAGEMENT_KEY,
   });
@@ -47,6 +52,7 @@ const Testimonial = ({ showModal, setShowModal, refresh }) => {
           pagination={{ clickable: true }}
           slidesPerView={3}
           autoplay
+          onSwiper={(swiper) => swiper.slideTo(slideTo)}
           breakpoints={{
             0: {
               slidesPerView: 1,
@@ -60,14 +66,16 @@ const Testimonial = ({ showModal, setShowModal, refresh }) => {
             },
           }}
         >
-          {testimonials.map((item, index) => (
-            <SwiperSlide className="py-10" key={index}>
-              <TestimonialCard
-                name={item.fields.name["en-US"]}
-                text={item.fields.text["en-US"]}
-              />
-            </SwiperSlide>
-          ))}
+          {testimonials?.length > 0
+            ? testimonials.map((item, index) => (
+                <SwiperSlide className="py-10" key={index}>
+                  <TestimonialCard
+                    name={item.fields.name["en-US"]}
+                    text={item.fields.text["en-US"]}
+                  />
+                </SwiperSlide>
+              ))
+            : "Loading..."}
         </Swiper>
       </div>
       <div className="flex justify-center items-center">

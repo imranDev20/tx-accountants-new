@@ -1,69 +1,66 @@
-// import React from "react";
-// import Accordion from "./Accordion";
-// import sanitizeHtml from "sanitize-html";
-// import parse from "html-react-parser";
-// import "../styles/accordion.css";
+import React from "react";
+import Accordion from "./Accordion";
+import sanitizeHtml from "sanitize-html";
+import parse from "html-react-parser";
+import "../styles/accordion.css";
 
-// // Demo styles, see 'Styles' section below for some notes on use.
-// import "react-accessible-accordion/dist/fancy-example.css";
-// import { graphql, useStaticQuery } from "gatsby";
+// Demo styles, see 'Styles' section below for some notes on use.
+import "react-accessible-accordion/dist/fancy-example.css";
+import { graphql, useStaticQuery } from "gatsby";
+import SectionText from "./SectionText";
+import SectionTitle from "./SectionTitle";
 
-// const Faq = () => {
-//   const data = useStaticQuery(graphql`
-//     query FaqQuery {
-//       strapiPage(slug: { eq: "home" }) {
-//         id
-//         blocks {
-//           ... on STRAPI__COMPONENT_BLOCKS_FAQ {
-//             id
-//             faqStack {
-//               id
-//               faqQues
-//               faqAns
-//             }
-//             faqHeader {
-//               title
-//               content {
-//                 data {
-//                   content
-//                 }
-//               }
-//             }
-//           }
-//         }
-//       }
-//     }
-//   `);
+const Faq = () => {
+  const data = useStaticQuery(graphql`
+    query FaqQuery {
+      headers: contentfulSections(identifier: { eq: "about-faq" }) {
+        id
+        description {
+          description
+        }
+        title
+      }
+      faqs: allContentfulFaq(sort: { order: ASC, fields: createdAt }) {
+        nodes {
+          title
+          id
+          answer {
+            answer
+          }
+        }
+      }
+    }
+  `);
 
-//   const faqs = data?.strapiPage?.blocks[6]?.faqStack;
+  const faqs = data?.faqs?.nodes;
 
-//   const { title, content } = data?.strapiPage?.blocks[6]?.faqHeader;
+  const {
+    title,
+    description: { description },
+  } = data?.headers;
 
-//   return (
-//     <section className="w-full py-20 bg-white px-10 mt-16">
-//       <div className="max-w-5xl mx-auto">
-//         <div className="w-full mb-16 text-center">
-//           <h2 className="text-neutral-700 text-3xl font-semibold mb-5">
-//             {title}
-//           </h2>
-//           {parse(
-//             `${sanitizeHtml(content?.data?.content)}`
-//           )}
+  return (
+    <section className="w-full py-20 bg-white px-10 mt-16">
+      <div className="max-w-5xl mx-auto">
+        <div className="w-full mb-16 text-center">
+          <SectionTitle className="text-neutral-700 text-3xl font-semibold mb-5">
+            {title}
+          </SectionTitle>
+          <SectionText>{description}</SectionText>
+        </div>
+        <div className="w-full max-w-4xl mx-auto border rounded">
+          {faqs.map((faq, index) => (
+            <Accordion
+              key={faq.id}
+              question={faq?.title}
+              answer={faq?.answer?.answer}
+              index={index}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
 
-//         </div>
-//         <div className="w-full max-w-4xl mx-auto border rounded">
-//           {faqs.map((faq, index) => (
-//             <Accordion
-//               key={faq.id}
-//               question={faq?.faqQues}
-//               answer={faq?.faqAns}
-//               index={index}
-//             />
-//           ))}
-//         </div>
-//       </div>
-//     </section>
-//   );
-// };
-
-// export default Faq;
+export default Faq;

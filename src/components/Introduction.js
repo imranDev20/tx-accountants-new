@@ -43,7 +43,7 @@ const Introduction = () => {
       <div className="relative before:content-[''] before:absolute before:bg-primary/60 before:h-full before:w-full before:top-0 before:left-0 py-5">
         <div className="max-w-5xl mx-auto z-20 relative">
           {introduction.map((item) => (
-            <div className="mb-5 text-white">
+            <div className="mb-5 text-white" key={item.id}>
               <SectionTitle className="text-2xl mb-4 font-semibold ">
                 {item?.title}
               </SectionTitle>

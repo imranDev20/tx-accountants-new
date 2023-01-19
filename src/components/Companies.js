@@ -37,7 +37,7 @@ const Companies = () => {
               target="_blank"
               className={`${
                 company.companyId === 1 ? " max-w-[70px]" : "max-w-[170px]"
-              } mx-auto md:mx-5 flex items-center`}
+              } mx-auto md:mx-5 flex items-center my-5 lg:my-0`}
             >
               {ext === "svg" ? (
                 <img src={company.image.url} alt="" className="w-72" />

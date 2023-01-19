@@ -4,7 +4,7 @@ import Layout from "../components/Layout";
 import Seo from "../components/Seo";
 import Targets from "../components/Targets";
 import Introduction from "../components/Introduction";
-// const Faq = loadable(() => import("../components/Faq"));
+const Faq = loadable(() => import("../components/Faq"));
 
 const AboutPage = () => {
   return (
@@ -12,7 +12,7 @@ const AboutPage = () => {
       <Seo title="About" />
       <Introduction />
       <Targets />
-      {/* <Faq /> */}
+      <Faq />
     </Layout>
   );
 };

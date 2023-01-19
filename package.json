@@ -20,6 +20,7 @@
     "@loadable/component": "^5.15.2",
     "@slixites/gatsby-plugin-google-fonts": "^1.1.1",
     "@stripe/stripe-js": "^1.32.0",
+    "aos": "^2.3.4",
     "axios": "^0.27.2",
     "contentful-management": "^10.21.6",
     "dotenv": "^16.0.0",

@@ -8,10 +8,7 @@ import NewsCard from "../components/NewsCard";
 import BlogBodyRenderer from "../components/BlogBodyRenderer";
 
 const BlogDetails = ({ data }) => {
-  const { title, body, updatedAt, authorName } = data?.contentfulBlogs;
-
-  const updateDate = new Date(Date.parse(updatedAt)).toLocaleString();
-  console.log(updateDate);
+  const { title, body, createdAt, authorName } = data?.contentfulBlogs;
 
   return (
     <Layout>
@@ -33,7 +30,7 @@ const BlogDetails = ({ data }) => {
             </span>
             <span className="flex items-center text-sm">
               <FaClock className="mr-2" />
-              {updateDate}
+              {createdAt}
             </span>
           </div>
 
@@ -55,17 +52,6 @@ const BlogDetails = ({ data }) => {
             See All
           </Link>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {/* {recentBlogs?.slice(0, 3).map((recentBlog) => (
-            <NewsCard
-              key={recentBlog?.strapi_id}
-              title={recentBlog?.title}
-              slug={recentBlog?.slug}
-              isRecent
-              image={getImage(recentBlog?.image[0]?.localFile)}
-            />
-          ))} */}
-        </div>
       </section>
     </Layout>
   );
@@ -76,7 +62,6 @@ export const query = graphql`
   query BlogDetailsQuery($slug: String) {
     contentfulBlogs(slug: { eq: $slug }) {
       title
-      updatedAt
       authorName
       body {
         raw
@@ -94,7 +79,7 @@ export const query = graphql`
         gatsbyImageData(width: 1280, placeholder: BLURRED)
       }
       slug
-      createdAt
+      createdAt(formatString: "DD MMMM, YYYY")
     }
   }
 `;

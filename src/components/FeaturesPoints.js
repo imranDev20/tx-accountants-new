@@ -13,9 +13,9 @@ const FeaturesPoints = ({ point, index }) => {
       opacity: 1,
       transition: {
         type: "spring",
-        delay: 0.3,
-        duration: (index + 1) * 0.5,
-        bounce: 0.5,
+        delay: index * 0.1,
+        duration: 1.5,
+        bounce: 0.1,
       },
     });
   }
@@ -25,6 +25,7 @@ const FeaturesPoints = ({ point, index }) => {
       opacity: 0,
     });
   }
+
   return (
     <motion.div
       ref={ref}

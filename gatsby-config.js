@@ -2,100 +2,6 @@ require("dotenv").config({
   path: `.env.${process.env.NODE_ENV}`,
 });
 
-const strapiConfig = {
-  apiURL: process.env.STRAPI_API_URL,
-  accessToken: process.env.STRAPI_TOKEN,
-  collectionTypes: [
-    {
-      singularName: `page`,
-      queryParams: {
-        populate: {
-          image: "*",
-          images: "*",
-          author: {
-            populate: "*",
-          },
-          blocks: {
-            populate: {
-              image: "*",
-              images: "*",
-              heroBackground: {
-                populate: {
-                  image: "*",
-                  images: "*",
-                },
-              },
-              heroButton: {
-                populate: "*",
-              },
-              aboutButton: {
-                populate: "*",
-              },
-              aboutHeader: {
-                populate: "*",
-              },
-              servicesIconStack: {
-                populate: "*",
-              },
-              whyUsIconStack: {
-                populate: "*",
-              },
-              whyUsBg: {
-                populate: "*",
-              },
-              company: {
-                populate: "*",
-              },
-              contactHeader: {
-                populate: "*",
-              },
-              contactBg: {
-                populate: "*",
-              },
-              faqHeader: {
-                populate: "*",
-              },
-              faqStack: {
-                populate: "*",
-              },
-              whoWeAreContent: {
-                populate: "*",
-              },
-              whoWeAreBg: {
-                populate: "*",
-              },
-              benefits: {
-                populate: "*",
-              },
-              idealFor: {
-                populate: "*",
-              },
-              backgroundImage: {
-                populate: "*",
-              },
-              visionTechContent: {
-                populate: "*",
-              },
-            },
-          },
-        },
-      },
-    },
-    `blog`,
-    {
-      singularName: `user`,
-      queryParams: {
-        populate: {
-          image: "*",
-          images: "*",
-        },
-      },
-    },
-  ],
-  singleTypes: [],
-  queryLimit: 1000,
-};
-
 module.exports = {
   trailingSlash: "always",
   siteMetadata: {
@@ -131,10 +37,7 @@ module.exports = {
         shortname: `txaccountants`,
       },
     },
-    {
-      resolve: `gatsby-source-strapi`,
-      options: strapiConfig,
-    },
+
     {
       resolve: "gatsby-plugin-manifest",
       options: {

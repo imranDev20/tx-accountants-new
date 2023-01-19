@@ -5,6 +5,7 @@ import { useInView } from "react-intersection-observer";
 import { LinkButton } from "./Button";
 import PricingCard from "./PricingCard";
 import ReactMarkdown from "react-markdown";
+import SectionTitle from "./SectionTitle";
 
 const PricingPlan = () => {
   const data = useStaticQuery(graphql`
@@ -49,12 +50,12 @@ const PricingPlan = () => {
     animationTitle.start({
       opacity: 1,
       x: 0,
-      transition: { type: "spring", duration: 1, bounce: 0.5 },
+      transition: { type: "spring", duration: 1.3, bounce: 0.2 },
     });
     animationText.start({
       opacity: 1,
       x: 0,
-      transition: { type: "spring", duration: 1, bounce: 0.5 },
+      transition: { type: "spring", duration: 1.3, bounce: 0.2 },
     });
   }
   if (!inView) {
@@ -71,8 +72,8 @@ const PricingPlan = () => {
   return (
     <section className="bg-neutral-100 py-20 px-10">
       <div className="max-w-5xl mx-auto  ">
-        {content.reverse().map((item) => (
-          <div className="mb-5">
+        {content.reverse().map((item, index) => (
+          <div className="mb-5" key={index}>
             <motion.h2
               animate={animationTitle}
               ref={ref}
@@ -97,12 +98,13 @@ const PricingPlan = () => {
         ))}
 
         <div className="text-center mt-10">
-          <h2 className="text-3xl text-secondary-dark mt-14 mb-5 font-semibold">
+          <SectionTitle className="text-3xl text-secondary-dark mt-14 mb-5 font-semibold">
             {pricingHeader.title}
-          </h2>
+          </SectionTitle>
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
-            {prices.map((price) => (
+            {prices.map((price, index) => (
               <PricingCard
+                index={index}
                 key={price?.pricingId}
                 name={price?.title}
                 priceFixed={price?.fixedPrice}
@@ -111,10 +113,7 @@ const PricingPlan = () => {
             ))}
           </div>
         </div>
-        <LinkButton
-          className="flex items-center justify-center"
-          to="/contact-us/"
-        >
+        <LinkButton className="flex items-center justify-center" to="/contact/">
           Contact Us Today!
         </LinkButton>
       </div>

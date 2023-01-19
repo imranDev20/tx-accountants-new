@@ -28,8 +28,9 @@ const Achievements = () => {
   return (
     <section className="bg-secondary text-white ">
       <div className="grid md:grid-cols-2 lg:grid-cols-4 max-w-5xl mx-auto   py-20">
-        {achievementData.map((item) => (
+        {achievementData.map((item, index) => (
           <AchievementBlock
+            key={index}
             target={item.number}
             title={item.name}
             duration={2}

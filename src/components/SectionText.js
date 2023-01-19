@@ -11,13 +11,18 @@ const SectionText = (props) => {
     animationParagraph.start({
       scale: 1,
       opacity: 1,
-      transition: { type: "spring", delay: 0.2 },
+      transition: {
+        type: "spring",
+        // delay: 0.1,
+        duration: 1.5,
+        bounce: 0.1,
+      },
     });
   }
   if (!inView) {
     animationParagraph.start({
       opacity: 0,
-      scale: 0.8,
+      scale: 0.9,
     });
   }
 
